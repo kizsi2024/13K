@@ -19,7 +19,10 @@ korPontszam = 0
 aktivJatekos = 0
 kocka = Math.floor(Math.random() * 6) + 1
 
+//document.querySelector('#current-' + aktivJatekos).textContent = kocka
+//document.querySelector('#current-' + aktivJatekos).textContent = <u> + kocka + </u>
 
+//document.querySelector('.dice').computedStyleMap.display = 'none'
 
 function kovetkezoJatekos(){
   aktivJatekos === 0 ? aktivJatekos = 1 : aktivJatekos = 0
@@ -68,7 +71,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
     document.querySelector('#score-' + aktivJatekos).textContent = pontszamok[aktivJatekos]
   
   
-    if(pontszamok[aktivJatekos] >= 100){
+    if(pontszamok[aktivJatekos] >= 15){
       document.querySelector('#name-' + aktivJatekos).textContent = 'Győztes!'
       document.querySelector('.player-' + aktivJatekos + '-panel').classList.add('winner')
       document.querySelector('.player-' + aktivJatekos + '-panel').classList.remove('active')
@@ -81,7 +84,6 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 
 document.querySelector('.btn-new').addEventListener('click', init);
 
-init()
 
 function init() { 
   pontszamok = [0, 0]
