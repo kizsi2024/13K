@@ -1,9 +1,9 @@
 //console.log("Hello World!")
 
-var kereszt$Nev = 'Pisti';
+/*var kereszt$Nev = 'Pisti';
 
 var a = 2;
-//console.log(kereszt/Nev);
+console.log(kereszt/Nev);
 
 var vezetekNev = 'Kis';
 console.log(vezetekNev);
@@ -17,11 +17,11 @@ console.log(nagykoru);
 var magassag;
 
 console.log(magassag);
-//console.log(nemLetezo);
+console.log(nemLetezo);*/
 
-var keresztNev = 'Pisti';
+/*var keresztNev = 'Pisti';
 var kor = 32;
-//console.log(keresztnev + ' ' + kor);
+console.log(keresztnev + ' ' + kor);
 var vezetekNev, felnott;
 
 vezetekNev = 'Kovács';
@@ -30,9 +30,9 @@ vezetekNev = 'Kovács';
 
 console.log(vezetekNev + ' felnőtt? ' + felnott)
 
-kor = 'harminc';
+kor = 'harminc';*/
 
-var szam = 10;
+/*var szam = 10;
 var osszeg = szam + 33;
 console.log(osszeg);
 var kulonbseg = 100 - szam;
@@ -49,9 +49,9 @@ console.log(egyenlo);
 
 console.log(typeof szam1);
 console.log(typeof 'jfksdjflkjsdk');
-console.log(typeof egyenlo);
+console.log(typeof egyenlo);*/
 
-var nev = 'Pistike';
+/*var nev = 'Pistike';
 function teszt () {
 var x = 10;
 //console.log(x);
@@ -143,7 +143,7 @@ var madarak = 198;
 var tobbAHullo = kigyok + bekak > madarak;
 console.log(tobbAHullo);
 
-var atlag = (kigyok + bekak + madarak) / 3;
+var atlag (kigyok + bekak + madarak) / 3;
 console.log(atlag);
 
 var a, b;
@@ -159,7 +159,7 @@ console.log(a);
 
 a = a + 1;
 a += 1;
-//а++;
+а++;
 
 var sutANap = false;
 var joIdovan = true;
@@ -182,13 +182,13 @@ if (szam === '10') {
     console.log('egyezik');
 } else {
     console.log('nem egyezik');
-}
+}*/
 
-function hello(nev) {
+/*function hello(nev) {
 return 'Helló ' + nev + '!';
 }
 var ertek = hello('Géza');
-console.log(ertek); 
+console.log(ertek); *//*
 function teglalapkeruletTerulet(a, b, funkcio) {
     var eredmeny;
     if (funkcio === 'kerület') {
@@ -350,4 +350,4 @@ function egy() {
 
 egy();
 
-window.egy();
+window.egy();*/
