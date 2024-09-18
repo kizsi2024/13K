@@ -1,0 +1,173 @@
+/*
+var odon={
+    nev:'ödön',
+    szuletesiEv:1978,
+    foglalkozaz:'grafikus'
+}
+
+var Szemely=function(nev,szuletesiEv,foglalkozaz){
+    this.nev=nev;
+    this.szuletesiEv=szuletesiEv;
+    this.foglalkozaz=foglalkozaz;
+}
+    Szemely.prototype.korSzamitas=function(){
+        console.log(2024-this.szuletesiEv)
+    }
+
+    Szemely.prototype.teszt='teszt'
+var odon= new Szemely('ödön',1978,'grafikus')
+odon.korSzamitas()
+
+var karcsi= new Szemely('karcsi',1950,'nyugdíjas')
+karcsi.korSzamitas()
+
+console.log(Szemely)
+console.log(odon)
+console.log(odon.teszt)
+*/
+/*
+var szemelyProto={
+    korSzamitas: function(){
+        console.log(2024-this.szuletesiEv)
+    }
+}
+var odon=Object.create(szemelyProto)
+odon.nev='ödön'
+odon.szuletesiEv='2000'
+odon.foglalkozaz='nincs'
+*/
+/*
+var x=10
+var y=x
+x=100
+console.log(x)
+console.log(y)
+
+var o1={
+    sz:100,
+    m:200
+}
+var o2=o1
+o1.sz=150
+
+console.log(o1.sz)
+console.log(o2.sz)
+
+var o1={
+    nev:'ödön',
+    kor:10
+}
+function mododsit(a,b){
+    a=40
+    b.nev='Lajos'
+}
+mododsit(a,o)
+console.log(o.nev)
+*/
+/*
+var evek=[1983,1937,923,1834]
+function tombMuletet(tomb,fv){
+    var eredmany=[]
+    for (let i = 0; i < tomb.length; i++) {
+        eredmany.push.fv(tomb[i])
+        
+    }
+    return eredmany
+}
+function korSzamitas(elem){
+    return 2024-elem
+}
+function felnott(elem){
+    return elem>=18
+}
+var korok=tombMuletet(elem.korSzamitas)
+console.log(korok)
+*/
+
+//vissza adott fugvények
+/*
+function intejukezdes(foglalkozas){
+    if(foglalkozas==='tanár'){
+        return function(nev){
+            console.log(nev+', meg tudná adni milyen tárgyakat oktat?')
+        }
+    }
+    else if(foglalkozas==='eladó'){
+        return function(nev){
+            console.log(nev+', hogyan kezelne egy rekamációt?')
+        }
+    }
+    else {
+        return function(nev){
+            console.log('mi a foglalkozása kedves'+nev)
+        }
+    }
+}
+var kerdestan=intejukezdes('tanár')
+kerdestan=('Pál')
+var kerdeselado=intejukezdes('eladó')
+kerdestan=('Karcsi')
+
+*/
+/*
+
+function jatek(){
+    var pont=Math.random()*10;
+    console.log(pont>=5);
+}
+jatek();
+*/
+
+/*
+(function(teszt){
+    var pont=Math.random()*10;
+    console.log(pont>=5);
+    console.log(teszt)
+})('hello');
+*/
+/*closure összefoglaló: egy belső fugvény mindig képes hozzáférni az őt tartalmazó kölső
+ fügvény paramétereihez és változóihoz*/ 
+function nyugdij(ev){
+    var szöveg='Nyugdijazasig levo ido'
+    return function(szulev){
+        var utumobj=new Date();
+        var aktulev=utumobj.getFullYear();
+        var kor=aktulev-szulev
+        console.log(szöveg+(ev-kor))
+    }
+}
+var nyugdijasok=nyugdij(66)
+nyugdijasok(1977)
+
+nyugdij(66)(1977)
+
+
+var leptet=(
+    function(){
+        var szamolo=0
+        return function(){
+            szamolo++
+            console.log(szamolo)
+        }
+    }
+)()
+
+leptet()
+leptet()
+leptet()
+
+
+
+function leptet(){
+    
+        var szamolo=0
+         
+            szamolo++
+            return   console.log(szamolo)
+        
+    
+}
+
+leptet()
+leptet()
+leptet()
