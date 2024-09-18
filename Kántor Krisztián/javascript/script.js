@@ -149,7 +149,6 @@ jatek()
     console.log(pont>=5)
     console.log(teszt)
 })('hello')
-*/
 
 //clousure
 
@@ -180,3 +179,71 @@ var leptet= (
 leptet()
 leptet()
 leptet()
+
+
+// apply, bind, call
+
+var odon = {
+    nev:"ödön",
+    kor:45,
+    foglalkozas:'csillagász',
+    udvlezs: function(stilus,napszak){
+        if (stilus==='hivatalos') {
+            console.log("Üdvözlöm, jó "+napszak+" kívánok! "+this.nev+" vagyok.")
+        }else if (stilus==="barati") {
+            console.log('Szia, jó '+napszak+"! ")
+        }
+    }
+}
+odon.udvlezs("hivatalos",'hajnalt')
+odon.udvlezs("barati", "estét")
+
+var bela={
+    nev:"Béla",
+    kor:24,
+    foglalkozas:"portás"
+}
+
+//call
+odon.udvlezs.call(bela,"barati","estét")
+
+//apply
+odon.udvlezs.apply(bela,["barati","reggelt"])
+
+//bind
+var odonBarati= odon.udvlezs.bind(odon,"barati")
+odonBarati("reggelt")
+odonBarati("estét")
+
+var belaHivatalos=odon.udvlezs.bind(bela,"hivatalos")
+var belaHivatalosReggeli=odon.udvlezs.bind(bela,"hivatalos","reggelt")
+
+belaHivatalos("estét")
+belaHivatalosReggeli()
+*/
+
+var evek=[1954, 1990, 1963, 2000, 2010]
+
+function tombMuvelet(tomb, fv){
+    var eredmeny=[]
+
+    for (var i = 0; i < tomb.length; i++) {
+        eredmeny.push(fv(tomb[i]))        
+    }
+    return eredmeny
+}
+
+
+function korSzamitas(elem){
+    return 2024-elem;
+}
+function felnott(korhatar, elem){
+    return elem>=korhatar;
+}
+
+var korok=tombMuvelet(evek,korSzamitas)
+console.log(evek)
+console.log(korok)
+
+var felnottekJapanban= tombMuvelet(korok,felnott.bind(this,20))
+console.log(felnottekJapanban)
