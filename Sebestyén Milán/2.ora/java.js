@@ -127,6 +127,7 @@ jatek();
 */
 /*closure összefoglaló: egy belső fugvény mindig képes hozzáférni az őt tartalmazó kölső
  fügvény paramétereihez és változóihoz*/ 
+ /*
 function nyugdij(ev){
     var szöveg='Nyugdijazasig levo ido'
     return function(szulev){
@@ -171,3 +172,59 @@ function leptet(){
 leptet()
 leptet()
 leptet()
+*/
+/*
+var odon ={nev:'ödön',
+kor:45,
+foglalkozas:'csillagasz',
+udvozles:function(stilus,napszak){
+    if(stilus=='hivatalos'){
+        console.log('üdvözlön, jó'+ napszak+'kívánok'+ this.nev+'vagyok');
+    }
+    else if(stilus=='baráti'){
+        console.log('szia, jó'+ napszak+'!');
+}}}
+
+odon.udvozles('hivatalos','hajnal')
+odon.udvozles('baráti','estét')
+
+
+var bela ={nev:'Béla',
+kor:64,
+foglalkozas:'portás',
+}
+
+odon.udvozles.call(bela,'hivatalos','hajnal')
+odon.udvozles.apply(bela,['baráti','estét'])
+
+var odonbaratai=odon.udvozles.bind(bela,'barati')
+odonbaratai('napot')
+odonbaratai('estét')
+var belahiv=odon.udvozles.bind(bela,'hivatalos')
+var belahivregg=odon.udvozles.bind(bela,'hivatalos','reggelt')
+
+belahiv('napot')
+belahivregg()
+*/
+var evek=[1983,1937,923,1834]
+function tombMuletet(tomb,fv){
+    var eredmany=[]
+    for (var i = 0; i < tomb.length; i++) {
+        eredmany.push(fv(tomb[i]))
+        
+    }
+    return eredmany
+}
+function korSzamitas(elem){
+    return 2024-elem
+}
+function felnott(korhatar,elem){
+    return elem>=korhatar
+}
+var korok=tombMuletet(evek,korSzamitas)
+console.log(evek)
+console.log(korok)
+
+var felnottkorjapanban=tombMuletet(korok,felnott.bind(this,20))
+console.log(felnottkorjapanban)
+
