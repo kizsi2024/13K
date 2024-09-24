@@ -220,7 +220,7 @@ var belaHivatalosReggeli=odon.udvlezs.bind(bela,"hivatalos","reggelt")
 
 belaHivatalos("estét")
 belaHivatalosReggeli()
-*/
+
 
 var evek=[1954, 1990, 1963, 2000, 2010]
 
@@ -247,3 +247,10 @@ console.log(korok)
 
 var felnottekJapanban= tombMuvelet(korok,felnott.bind(this,20))
 console.log(felnottekJapanban)
+
+
+
+
+
+*/
+
