@@ -227,7 +227,7 @@ var belaHivatalosReggeli = odon.udvozlet.bind(bela, 'hivatalos', 'reggelt')
 belaHivatalos('estét')
 belaHivatalosReggeli()*/
 
-var evek = [1954, 1990, 1963, 2000, 2010]
+/*var evek = [1954, 1990, 1963, 2000, 2010]
 
 function tombMuvelet(tomb, fv){
     var eredmeny =[]
@@ -253,4 +253,129 @@ console.log(korok)
 
 var felnottkorJapanban = tombMuvelet(korok, felnott.bind(this, 20))
 
-console.log(felnottkorJapanban)
+console.log(felnottkorJapanban)*/
+
+
+/*var nev5 = 'Teszt Elek'
+var kor5 = 40
+
+nev5 = 'Kiss Pista'
+
+console.log(nev5)*/
+
+/*const nev6 = 'Teszt Elek'
+let kor6 = 40
+
+//nev6 = 'Kiss Pista' //hiba
+
+console.log(nev6)*/
+
+/*function nyelvVizsga5(siker){
+    if(siker){
+        var keresztnev = 'Ödön'
+        var szuletsiEv = 1980
+        console.log(keresztnev + '(születési év: ' + szuletsiEv + ') sikeres volt a vizsga')
+    }   
+}
+nyelvVizsga5(true)*/
+
+
+/*function nyelvVizsga6(siker){
+    if(siker){
+        let keresztnev = 'Ödön'
+        const szuletsiEv = 1980
+        console.log(keresztnev + '(születési év: ' + szuletsiEv + ') sikeres volt a vizsga')
+    }   
+}
+nyelvVizsga6(true)*/
+
+
+/*let i = 9
+
+for(let i=0; i<5; i++){
+    console.log(i)
+}
+
+console.log(i)*/
+
+/*var i = 9
+
+for(var i=0; i<5; i++){
+    console.log(i)
+}
+
+console.log(i)*/
+
+
+//Blokkok, IIFE
+//es6
+/*{
+    const a = 1
+    let b = 2
+    //var c = 5
+}
+
+console.log(a + b)*/
+
+/*(function(){
+    let c = 3
+    console.log(c)
+})()
+console.log(c)*/
+
+//Sztringek ES6ban
+
+/*let vezetekNev = 'Teszt'
+let keresztNev = 'Elek'
+
+const szuletesiEv = 1970
+
+function korSzamitas(ev){
+    return 2024 - ev
+}
+
+//es5
+//console.log(vezetekNev + ' ' + keresztNev + ', született ' + szuletsiEv + '-ben. Most ' + korSzamitas(szuletsiEv) + ' éves')
+
+//es6
+//console.log(`${vezetekNev} ${keresztNev}, született ${szuletesiEv}-ben. Most ${korSzamitas(szuletesiEv)} éves.`)
+
+const nev = `${vezetekNev} ${keresztNev}`
+
+console.log(nev.startsWith('T'))
+
+console.log(nev.endsWith('ek'))
+
+console.log(nev.includes('Ele'))
+
+console.log(vezetekNev.repeat(3))
+
+console.log(`${vezetekNev} `.repeat(3))*/
+
+
+//Nyíl függvények
+const evek = [1970, 1975, 1954, 2010, 1981]
+
+//es5
+
+/*var korokES5 = evek.map(function(elem){
+    return 2024 - elem
+})
+
+console.log(korokES5)
+
+//es6
+
+let korokES6 = evek.map(elem => 2024 - elem)
+
+korokES6 = evek.map((elem, index) => `Kor ${index}: ${2024 - elem}.`)
+
+console.log(korokES6)*/
+
+korokES6 = evek.map((elem, index) => {
+    const aktEv = new Date().getFullYear()
+    const kor = aktEv - elem
+    return `Kor ${index}: ${kor},`
+})
+
+console.log(korokES6)
