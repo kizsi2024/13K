@@ -206,7 +206,7 @@ Szemely.prototype.barataimES6 = function(haverok) {
 }
  
 new Szemely('Chad').barataimES6(haverok);
- */
+
 
 ////////////////////////////////////////////////////////////////
 // Destruktúrálás
@@ -245,27 +245,27 @@ function korEsNyugdij(szuletesiEv) {
 const [kor3, nyugdij] = korEsNyugdij(1978);
 console.log(kor3);
 console.log(nyugdij);
-
+*/
 
 ////////////////////////////////////////////////////////////////
 // Tömbök
  
-const dobozok = document.querySelectorAll('.doboz');
+const dobozok = document.querySelectorAll('.rectangle');
  
-/*
+
 // ES5
 var dobozokTombES5 = Array.prototype.slice.call(dobozok);
  
 dobozokTombES5.forEach(function(aktualis) {
     aktualis.style.backgroundColor = 'orangered';
 });
-*/
+
  
 // ES6
 const dobozokTombES6 = Array.from(dobozok);
 dobozokTombES6.forEach(aktualis => aktualis.style.backgroundColor = 'dodgerblue');
  
-/*
+
 // ES5
 for (var i = 0; i < dobozokTombES5.length; i++) {
     if (dobozokTombES5[i].className === 'doboz kek') {
@@ -298,7 +298,7 @@ console.log(felnottek.indexOf(true));
  
 // ES6
 console.log(korok.findIndex(aktualis => aktualis >= 18));
-console.log(korok.find(aktualis => aktualis >= 18));*/
+console.log(korok.find(aktualis => aktualis >= 18));
  
  
 ////////////////////////////////////////////////////////////////
