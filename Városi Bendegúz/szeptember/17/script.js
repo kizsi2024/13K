@@ -227,7 +227,7 @@ var belaHivatalosReggeli = odon.udvozlet.bind(bela, 'hivatalos', 'reggelt')
 belaHivatalos('estét')
 belaHivatalosReggeli()*/
 
-var evek = [1954, 1990, 1963, 2000, 2010]
+/*var evek = [1954, 1990, 1963, 2000, 2010]
 
 function tombMuvelet(tomb, fv){
     var eredmeny =[]
@@ -253,4 +253,309 @@ console.log(korok)
 
 var felnottkorJapanban = tombMuvelet(korok, felnott.bind(this, 20))
 
-console.log(felnottkorJapanban)
+console.log(felnottkorJapanban)*/
+
+
+/*var nev5 = 'Teszt Elek'
+var kor5 = 40
+
+nev5 = 'Kiss Pista'
+
+console.log(nev5)*/
+
+/*const nev6 = 'Teszt Elek'
+let kor6 = 40
+
+//nev6 = 'Kiss Pista' //hiba
+
+console.log(nev6)*/
+
+/*function nyelvVizsga5(siker){
+    if(siker){
+        var keresztnev = 'Ödön'
+        var szuletsiEv = 1980
+        console.log(keresztnev + '(születési év: ' + szuletsiEv + ') sikeres volt a vizsga')
+    }   
+}
+nyelvVizsga5(true)*/
+
+
+/*function nyelvVizsga6(siker){
+    if(siker){
+        let keresztnev = 'Ödön'
+        const szuletsiEv = 1980
+        console.log(keresztnev + '(születési év: ' + szuletsiEv + ') sikeres volt a vizsga')
+    }   
+}
+nyelvVizsga6(true)*/
+
+
+/*let i = 9
+
+for(let i=0; i<5; i++){
+    console.log(i)
+}
+
+console.log(i)*/
+
+/*var i = 9
+
+for(var i=0; i<5; i++){
+    console.log(i)
+}
+
+console.log(i)*/
+
+
+//Blokkok, IIFE
+//es6
+/*{
+    const a = 1
+    let b = 2
+    //var c = 5
+}
+
+console.log(a + b)*/
+
+/*(function(){
+    let c = 3
+    console.log(c)
+})()
+console.log(c)*/
+
+//Sztringek ES6ban
+
+/*let vezetekNev = 'Teszt'
+let keresztNev = 'Elek'
+
+const szuletesiEv = 1970
+
+function korSzamitas(ev){
+    return 2024 - ev
+}
+
+//es5
+//console.log(vezetekNev + ' ' + keresztNev + ', született ' + szuletsiEv + '-ben. Most ' + korSzamitas(szuletsiEv) + ' éves')
+
+//es6
+//console.log(`${vezetekNev} ${keresztNev}, született ${szuletesiEv}-ben. Most ${korSzamitas(szuletesiEv)} éves.`)
+
+const nev = `${vezetekNev} ${keresztNev}`
+
+console.log(nev.startsWith('T'))
+
+console.log(nev.endsWith('ek'))
+
+console.log(nev.includes('Ele'))
+
+console.log(vezetekNev.repeat(3))
+
+console.log(`${vezetekNev} `.repeat(3))*/
+
+
+//Nyíl függvények
+const evek = [1970, 1975, 1954, 2010, 1981]
+
+//es5
+
+/*var korokES5 = evek.map(function(elem){
+    return 2024 - elem
+})
+
+console.log(korokES5)
+
+//es6
+
+let korokES6 = evek.map(elem => 2024 - elem)
+
+korokES6 = evek.map((elem, index) => `Kor ${index}: ${2024 - elem}.`)
+
+console.log(korokES6)*/
+
+/*korokES6 = evek.map((elem, index) => {
+    const aktEv = new Date().getFullYear()
+    const kor = aktEv - elem
+    return `Kor ${index}: ${kor},`
+})
+
+console.log(korokES6)*/
+
+
+/*var dobozES5 = {
+    szin: 'zöld',
+    pozicio: 1,
+    kattintsRam: function(){
+        console.log(this.szin)
+
+        document.querySelector('.green').addEventListener('click', function(){
+            var szoveg = 'Én vagok a(z) ' + this.pozicio + '. doboz és a sznem ' +this.szin + '.'
+            alert(szoveg)
+        })
+    }
+}
+
+dobozES5.kattintsRam()*/
+
+//ES5
+/*var dobozES5 = {
+    szin: 'zöld',
+    pozicio: 1,
+    kattintsRam: function(){
+        var objektum = this
+
+        document.querySelector('.green').addEventListener('click', function(){
+            var szoveg = 'Én vagok a(z) ' + objektum.pozicio + '. doboz és a sznem ' +objektum.szin + '.'
+            alert(szoveg)
+        })
+    }
+}
+
+dobozES5.kattintsRam()*/
+
+//ES6
+/*var dobozES6 = {
+    szin: 'zöld',
+    pozicio: 1,
+    kattintsRam: function(){
+
+        document.querySelector('.green').addEventListener('click', () => {
+            var szoveg = 'Én vagok a(z) ' + this.pozicio + '. doboz és a sznem ' +this.szin + '.'
+            alert(szoveg)
+        })
+    }
+}
+
+dobozES6.kattintsRam()*/
+
+
+/*function Szemely(nev){
+    this.nev = nev
+}
+
+//ES5
+/*Szemely.prototype.barataimES5 = function(haverok){
+    var obj = this
+    var tomb = haverok.map(function(elem){
+        return obj.nev + ' barátja ' + elem + '.'
+    })
+    console.log(tomb)
+}*/
+
+//var haverok = ['Jóska', 'Pista', 'Ödön']
+//new Szemely('Géza').barataimES5(haverok)
+
+
+//ES6
+/*Szemely.prototype.barataimES6 = function(haerok){
+    const tomb = haverok.map(elem => `${this.nev} barátja ${elem}.`)
+    console.log(tomb)
+}
+
+new Szemely('Géza').barataimES6(haverok)*/
+
+
+//Destrukturálás
+
+//ES5
+/*var odon = ['Ödön', 50]
+var nev = odon[0]
+var kor = odon[1]
+
+console.log(nev)
+console.log(kor)
+
+//ES6
+const [nev2, kor2] = ['Ödön', 50]
+
+console.log(nev2)
+console.log(kor2)
+
+const obj = {
+    keresztNev: 'Ödön',
+    vezetekNev: 'Bödön'
+}
+
+
+
+const {keresztNev, vezetekNev} = obj
+
+console.log(keresztNev)
+console.log(vezetekNev)
+
+const { keresztNev: x, vezetekNev: y} = obj
+
+console.log(x)
+console.log(y)
+
+function korEsNyigdij(szuletesiEv) {
+    let nyugdijKorhatar = 65
+    const kor = new Date().getFullYear() - szuletesiEv
+
+    return [kor, nyugdijKorhatar - kor]
+}
+
+const [kor3, nyugdij] = korEsNyigdij(1978)
+
+console.log(kor3)
+console.log(nyugdij)*/
+
+
+//Tömbök
+
+const dobozok = document.querySelectorAll('.rectangle')
+console.log(dobozok)
+//ES5
+
+var dobozokTombES5 = Array.prototype.slice.call(dobozok)
+
+dobozokTombES5.forEach(function(aktualis){
+    aktualis.style.backgroundColor = 'orange'
+})
+
+//E6
+
+const dobozokTombES6 = Array.from(dobozok)
+dobozokTombES6.forEach(aktualis => aktualis.style.backgroundColor = 'blue')
+
+//ES5
+
+for(var i = 0; i < dobozokTombES5.length; i++){
+    if(dobozokTombES5[i].className === 'rectangle blue'){
+        continue
+    }
+    dobozokTombES5[i].textContent = 'Kék lettem'
+}
+
+//ES6
+
+for(const aktualis of dobozokTombES6){
+    if(aktualis.className === 'rectangle blue'){
+        continue
+    }
+    aktualis.textContent = 'Kék lettem'
+}
+
+for(const aktualis of dobozokTombES6){
+    if(aktualis.className.includes('blue')){
+        continue
+    }
+    aktualis.textContent = 'Kék lettem'
+}
+
+
+//ES5
+
+var korok = [2, 10, 20, 17, 14]
+console.log(korok)
+
+var felnottek = korok.map(function(aktualis){
+    return aktualis >= 18
+})
+
+console.log(felnottek)
+
+console.log(felnottek.indexOf(true))
+
+//ES6
+console.log(korok.findIndex(aktualis => aktualis >= 18))
+console.log(korok.find(aktualis => aktualis >= 18 ))
