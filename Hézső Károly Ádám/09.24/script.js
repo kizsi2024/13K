@@ -142,7 +142,7 @@ Szemely.prototype.barataimEs6 = function(haverok){
 }
 new Szemely('geza').barataimEs6(haverok)*/
 
-var odon = ['ödöm',50]
+/*var odon = ['ödöm',50]
 var nev = odon[0]
 var kor = odon[1]
 
@@ -167,7 +167,19 @@ console.log(vezetekNev)
 const { keresztNev: x , vezetekNev: y} = obj
 
 console.log(x)
-console.log(y)
+console.log(y)*/
+
+
+/*const dobozok = document.querySelectorAll('.rectangle')
+
+var dobozoktombES5 = Array.prototype.slice.call(dobozok)
+    dobozoktombES5.forEach(element => {
+        
+    })*/
+
+
+
+
 
 
 
