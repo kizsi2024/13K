@@ -131,7 +131,8 @@ var feluletVezerlo = (function() {
         osszbevetelCimke: '.koltsegvetes__bevetelek--ertek',
         osszkiadasCimke: '.koltsegvetes__kiadasok--ertek',
         szazalekCimke: '.koltsegvetes__kiadasok--szazalek',
-        kontener: '.kontener'
+        kontener: '.kontener',
+        datumCime: ".koltsegvetes__cim--honap"
     };
 
     return {
@@ -186,6 +187,11 @@ var feluletVezerlo = (function() {
         },
 
         koltsegvetesMegjelenites: function(obj) {
+
+            var tipus;
+
+            obj.koltsegvetes > 0 ? tipus == "bev" : "kia";
+
             document.querySelector(DOMelemek.koltsegvetesCimke).textContent = obj.osszeg;
             document.querySelector(DOMelemek.osszbevetelCimke).textContent = obj.bev;
             document.querySelector(DOMelemek.osszkiadasCimke).textContent = obj.kia;
@@ -195,6 +201,36 @@ var feluletVezerlo = (function() {
             } else {
                 document.querySelector(DOMelemek.szazalekCimke).textContent = '---';
             }
+        },
+
+        szazalekokMegjelnitese: function(szazalekok){
+            var elemek = document.querySelector(DOMelemek.szazalekCimke);
+
+            var nodeListForEach = function(lista, callback){
+                for(var i = 0; i < lista.length; i++){
+                    callback(lista[i], i)
+                }
+            }
+
+            nodeListForEach(elemek, function(aktualisElem, index){
+                if(szazalek[index] > 0){
+                    aktualisElem.textContent = szazalekok[index] + '%'
+                } else{
+                    aktualisElem.textContent = "---"
+                }
+            })
+        },
+
+        datumMegjelenites: function(){
+            var most, ev, honap, honapok;
+
+            honapok = ['Január','Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December']
+
+            most = new Date()
+            ev = most.getFullYear()
+            honap = most.getMonth()
+
+            document.querySelector(DOMelemek.datumCime).textContent = ev + '.' + honapok[honap]
         }
     };
 })();
@@ -283,6 +319,7 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
                 
             });
             esemenykezeloBeallit();
+            feluletVezerlo.datumMegjelenites()
         }
     };
 })(koltsegvetesVezerlo, feluletVezerlo);
