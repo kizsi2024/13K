@@ -5,18 +5,6 @@ var koltsegvetesVezerlo = (function() {
         this.id = id;
         this.ertek = parseInt(ertek);
     }
-    Kiadas.prototype.szazalekokSzamolas=function(osszBevetel){
-        if(osszBevetel>0){
-            this.szazalek=Math.round((this.ertek/osszBevetel)*100)
-
-        }
-        else{
-            this.szazalek-1
-        }
-    }
-    Kiadas.prototype.getSzazalek=function(){
-        return this.szazalek
-    }
     var Bevetel = function(id, leiras, ertek) {
         this.leiras = leiras;
         this.id = id;
@@ -114,18 +102,6 @@ var koltsegvetesVezerlo = (function() {
             }
 
         },
-        szazalekokSzamolas:function(){
-            adat.tetelek.kia.forEach(function(aktualisElem){
-                aktualisElem.szazalekokSzamolas(adat.osszegek.bev)
-            })
-        },
-
-        szazalekokLekeredezese:function(){
-            var kiadasSzazakek=adat.tetelek.kia.map(function(aktualisElem){
-                return aktualisElem.getSzazalek()
-            })
-            return kiadasSzazakek
-        },
 
         getkoltsegvetes: function() {
             return {
@@ -155,17 +131,8 @@ var feluletVezerlo = (function() {
         osszbevetelCimke: '.koltsegvetes__bevetelek--ertek',
         osszkiadasCimke: '.koltsegvetes__kiadasok--ertek',
         szazalekCimke: '.koltsegvetes__kiadasok--szazalek',
-        kontener: '.kontener',
-        datumCimke:'.koltsegveetes_cim--honap'
+        kontener: '.kontener'
     };
-
-    var szamFormazo=function(szam,tipus){
-        szam=Math.abs(szam)
-        szam=szam.toLocaleString()
-        tipus==='kia' ? elojel='-': elojel='+'
-        szam=elojel+' '+szam
-        return szam
-    }
 
     return {
         getInput: function() {
@@ -195,7 +162,7 @@ var feluletVezerlo = (function() {
             // HTML string placeholder értékekkel cseréje
             ujHtml = html.replace('%id%', obj.id);
             ujHtml = ujHtml.replace('%leiras%', obj.leiras);
-            ujHtml = ujHtml.replace('%ertek%',szamFormazo( obj.ertek,tipus));
+            ujHtml = ujHtml.replace('%ertek%', obj.ertek);
 
             // HTML beszúrása a DOM-ba
             document.querySelector(elem).insertAdjacentHTML('beforeend', ujHtml);
@@ -219,27 +186,15 @@ var feluletVezerlo = (function() {
         },
 
         koltsegvetesMegjelenites: function(obj) {
-            var tipus;
-            obj.koltsegvetes>0 ? tipus='bev':'kia'
-
-            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = szamFormazo(obj.osszeg, tipus);
-            document.querySelector(DOMelemek.osszbevetelCimke).textContent = szamFormazo(obj.bev,'bev');
-            document.querySelector(DOMelemek.osszkiadasCimke).textContent = szamFormazo(obj.kia, 'kia');
+            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = obj.osszeg;
+            document.querySelector(DOMelemek.osszbevetelCimke).textContent = obj.bev;
+            document.querySelector(DOMelemek.osszkiadasCimke).textContent = obj.kia;
 
             if (obj.szazalek > 0) {
                 document.querySelector(DOMelemek.szazalekCimke).textContent = obj.szazalek + '%';
             } else {
                 document.querySelector(DOMelemek.szazalekCimke).textContent = '---';
             }
-        },
-        datumMegjelenites:function(){
-            var most,ev,honap,honapok
-            honapok=['január','Február','Március','április','május','június','július','agusztus','szeptemer','oktober','november','december']
-            most=new Date()
-            ev=most.getFullYear()
-            honap=most.getMonth()
-
-            document.querySelector(DOMelemek.datumCimke).textContent-ev+'. '+honapok[honap]
         }
     };
 })();
