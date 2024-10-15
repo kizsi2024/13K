@@ -1,4 +1,3 @@
-
 // Költségvetés vezérlés
 var koltsegvetesVezerlo = (function() {
     var Kiadas = function(id, leiras, ertek) {
@@ -41,36 +40,32 @@ var koltsegvetesVezerlo = (function() {
         tetelHozzaad: function(tip, lei, ert) {
             var ujTetel, ID;
             ID = 0;
-        
+
             // ID létrehozása
             if (adat.tetelek[tip] !== undefined && adat.tetelek[tip].length > 0) {
                 ID = adat.tetelek[tip][adat.tetelek[tip].length - 1].id + 1;
             } else {
                 ID = 0;
             }
-        
+
             // Új kiadás vagy bevétel létrehozás
             if (tip === 'bev') {
                 ujTetel = new Bevetel(ID, lei, ert);
             } else if (tip === 'kia') {
                 ujTetel = new Kiadas(ID, lei, ert);
             } else {
-                console.warn(`Invalid tip '${tip}' received. Using default values.`);
-                ujTetel = new Kiadas(ID, lei, 0); 
+                // kezeld a hibát, például dobjon hibát vagy állitsa 'ujtetel'-t 'null'-ra
+                throw new Error('Invalid tip: ' + tip);
             }
-        
+
             // Új tétel hozzáadása az adatszerkezethez
-            if (adat.tetelek[tip]) {
+            if (adat.tetelek[tip] !== undefined) {
                 adat.tetelek[tip].push(ujTetel);
-            } else {
-                console.warn(`Array for tip '${tip}' does not exist`);
             }
-        
+
             // Új tétel visszadása
             return ujTetel;
         },
-        
-        
 
         tetelTorol: function(tip, id) {
             var idTomb, index;

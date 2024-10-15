@@ -33,7 +33,7 @@ body {
 
 .top {
     height: 40vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(../img/background.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(background.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -275,4 +275,3 @@ h2 {
 
 .fizetetlen .tetel__szazalek { box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1); }
 .fizetetlen:hover .tetel__leiras { font-weight: 900; }
-
