@@ -1,8 +1,8 @@
-/*// let és const
+// let és const
 // es5
 
-var nev5 = 'Teszt Elek';
-var kor5 = 40;
+//var nev5 = 'Teszt Elek';
+//var kor5 = 40;
 
 //nev5 = 'Kiss Pista';
 
@@ -59,8 +59,8 @@ console.log(a+b);
     console.log(c);
 })();
 console.log(c)*/
-/*
-let vezetekNev = 'Teszt';
+
+/*let vezetekNev = 'Teszt';
 let keresztNev = 'Elek';
 
 const szuletesiEv = 1970;
@@ -124,21 +124,23 @@ console.log(korokES6)*/
 
 dobozES5.kattintsRam();*/
 
+
 /*var dobozES6 = {
     szin: 'zöld',
     pozicio: 1,
     kattintsRam: function() {
+        var objektum = this;
 
-        document.querySelector('.green').addEventListener('click', () => {
-            var szoveg = 'Én vagyok a(z) ' + this.pozicio + '. doboz és a szinem ' + this.szin + '.';
+        document.querySelector('.green').addEventListener('click',() => {
+            var szoveg = 'Én vagyok a(z) ' + this.pozicio + '. doboz és a szinem ' + objektum.szin + '.';
             alert(szoveg)
         })
     }
 };
 
-dobozES6.kattintsRam()
+dobozES6.kattintsRam();*/
 
-function Szemely(nev) {
+/*function Szemely(nev) {
     this.nev = nev;
 }
 
@@ -151,11 +153,12 @@ Szemely.prototype.barataimES5 = function(haverok) {
 }
 
 var haverok = ['Jóska', 'Pista', 'Ödön'];
-new Szemely('Géza').barataimES5(haverok);
+new Szemely('Géza').barataimES5(haverok);*/
+
 
 //ES6
 
-Szemely.prototype.barataimES6 = function(haverok) {
+/*Szemely.prototype.barataimES6 = function(haverok) {
 
     const tomb = haverok.map(elem => `${this.nve} baratja ${elem}.`);
     console.log(tomb);
@@ -163,9 +166,11 @@ Szemely.prototype.barataimES6 = function(haverok) {
 
 
 var haverok = ['Jóska', 'Pista', 'Ödön'];
-new Szemely('Géze').barataimES6(haverok);
+new Szemely('Géze').barataimES6(haverok);*/
+
 
 //es5 
+/*
 var odon = ['Ödön', 50]
 var nev = odon[0];
 var kor = odon[1];
@@ -175,9 +180,6 @@ console.log(kor);
 
 //es6
 const [nev2, kor2] = ['Ödön', 50];
-
-console.log(nev);
-console.log(kor);
 
 const obj = {
     keresztNev: 'Ödön',
@@ -194,17 +196,27 @@ function korEsNyugdij(szuletesiEv) {
     const kor = new Date().getFullYear() - szuletesiEv;
 
     return [kor, nyugdijKorhatar - kor];
-}*/
+}
+
+const [kor3, nyugdij] = korEsNyugdij(1978);
+
+console.log(kor3);
+console.log(nyugdij);*/
+
+//Tömbök
 
 /*const dobozok = document.querySelectorAll('.rectangle');
 
-// ES5
-var dobozokTombES5 = Array.prototype.slice.call(dobozok);
-dobozokTombES5.forEach(function(aktualis) {
-    aktualis.style.backgroundColor = 'orange';
-});
+//es5
 
-// ES6
+var dobozokTombES5 = Array.prototype.slice.call(dobozok)
+    dobozokTombES5.forEach(function(aktualis) {
+        aktualis.style.backgroundColor = 'orange' ;
+    });
+    
+
+//es6
+
 const dobozokTombES6 = Array.from(dobozok);
 dobozokTombES6.forEach(aktualis => aktualis.style.backgroundColor = 'blue');
 
@@ -216,7 +228,6 @@ for (var i = 0; i < dobozokTombES5.length; i++) {
     }
     dobozokTombES5[i].textContent = 'Kék lettem';
 }
-
 
 //es6
 
@@ -232,28 +243,12 @@ for (const aktualis of dobozokTombES6) {
         continue;
     }
     aktualis.textContent = 'Kék lettem';
-}
+}*/
 
-//es5
-var korok = [2, 10, 20, 17, 14]
-
-console.log(korok);
-
-var felnottek = korok.map(function(aktualis) {
-    return aktualis >= 18;
-});
-
-//console.log(felnottek);
-
-console.log(felnottek.indexOf(true));
-
-//es6
-console.log(korok.findIndex(aktualis => aktualis >= 18));
-console.log(korok.find(aktualis => aktualis >= 18));
 
 // Spread operátor
 
-function szamok(a, b, c, d) {
+/*function szamok(a, b, c, d) {
     return a + b + c + d;
 }
 
@@ -270,22 +265,18 @@ console.log(osszeg2);
 const osszeg3 = szamok(...szamokTomb);
 console.log(osszeg3);
 
+
 const t2 = [5, 6, 7, 8, 9, 10];
 
 const t3 = [...szamokTomb, ...t2];
-console.log(t3);
-
-const cimsor = document.querySelector('h1');
-
-const htmlElemek = [cimsor, ...dobozok];
-
-Array.from(htmlElemek).forEach(aktualisElem => aktualisElem.style.color = 'purple');
-
+console.log(t3);*/
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Rest paratméterek
 
-function parosVagyParatlanES5() {
+//es5
+
+/*function parosVagyParatlanES5() {
     console.log(arguements);
     var argumentumokTomb = Arra.prototype.slice.call(arguements);
     console.log(argumentumokTomb);
@@ -295,10 +286,12 @@ function parosVagyParatlanES5() {
         } else {
             console.log('paratlan');
         }
-    });   
+    });
+        
+    
 }
 
-parosVagyParatlanES5(1, 2, 3)
+parosVagyParatlanES5(1, 2, 3);
 
 //ES6
 
@@ -314,7 +307,6 @@ function parosVagyParatlanES6(...szamok) {
 }
 
 parosVagyParatlanES6(1, 2, 3);
-
 function parosVagyParatlanES5() {
 
     var argumentumokTomb = Array.prototype.slice.call(arguments, 1);
@@ -327,7 +319,6 @@ function parosVagyParatlanES5() {
         }
     });
 }
-
 parosVagyParatlanES5('teszt', 1, 2, 3, 100, 5, 20);
 
 function parosVagyParatlanES6(teszt, ...szamok) {
@@ -342,6 +333,7 @@ function parosVagyParatlanES6(teszt, ...szamok) {
 }
 
 parosVagyParatlanES5('teszt', 1, 2, 3, 10, 20, 25);
+
 
 function AdamsFamily(keresztNev, szuletesiEv, csaladiNev) {
     csaladiNev === undefined ? csaladiNev = 'Adams' : csaladiNev = csaladiNev;
@@ -366,6 +358,7 @@ var fester = new AdamsFamily('Fester', 1940);
 var morthisa = new AdamsFamily('Mortisha', 1965);
 var kuzin = new AdamsFamily('Kuzin', 1800, 'Hogyishivják');
 
+
 //es6
 function AdamsFamily(keresztNev, szuletesiEv, csaladiNev = 'Adams') {
 
@@ -377,7 +370,7 @@ function AdamsFamily(keresztNev, szuletesiEv, csaladiNev = 'Adams') {
 
 var fester = new AdamsFamily('Fester', 1940);
 var morthisa = new AdamsFamily('Mortisha', 1965);
-var kuzin = new AdamsFamily('Kuzin', 1800, 'Hogyishivják');*/
+var kuzin = new AdamsFamily('Kuzin', 1800, 'Hogyishivják');
 
 /////////////////////////////////
 // Map
@@ -392,15 +385,78 @@ kerdes.set(4, 'Nándi');
 
 kerdes.set('helyes', 2);
 
-kerdes.forEach(
-    (kulcs, ertek) => console.log(`Kulcs: ${kulcs}, ertek: ${ertek}`)
-)
+kerdes.set(true, 'helyes válasz');
+kerdes.set(false, 'nem talált');
 
-for(let [kulcs, ertek] of kerdes.entries()){
+console.log(kerdes.get('kerdes'));
+console.log(kerdes.size);
+kerdes.delete(4)
+
+if (kerdes.has(3)) {
+    kerdes(3);
+}*/
+//kerdes.forEach((kulcs, ertek) => )
+
+/*for(let[kulcs,ertek] of kerdes.entries()){
     if(typeof(kulcs) === 'number'){
-        console.log(`Kulcs: ${kulcs}, érték: ${ertek}`)
+        console.log(`kulcs: ${kulcs}, ertek: ${ertek}`)
     }
 }
+kerdes.clear();*/
+
+/*var SzemelyES5 = function() {
+    this.nev = nev;
+    this.szuletesiEv = szuletesiEv;
+    this.foglalkozas = foglalkozas;
+}
+
+SzemelyES5.prototype.korszamitas = function() {
+    var kor = new Date().getFullYear() - this.szuletesiEv;
+    console.log(kor);
+}
+
+var KatonaES5 = function(nev, szuletesiEv, foglalkozas, rendfokozat, osztag) {
+    SzemelyES5.call(this, nev, szuletesiEv, foglalkozas);
+    this.rendfokozat = rendfokozat;
+    this.osztag = osztag;
+}
+
+KatonaES5.prototype = Object.create(SzemelyES5.prototype);
+
+KatonaES5.prototype.rangszerzes = function(rang) {
+    this.rendfokozat = rang;
+    console.log(this.rendfokozat);
+}
+
+var odonKatona = new KatonaES5('Ödön', 1970, 'Pék', 'közlegény', 'harcosok');
+
+odonKatona.korszamitas();
+
+const masodik= () => {
+    console.log('második');
+}
+
+const elso = () => {
+    console.log('első');
+    masodik();
+    console.log('harmadik');
+}
+
+elso();
+
+const masodik2 = () => 
+    setTimeout(() => {
+        console.log('második'); 
+    }, 6000);{
+}
+
+const elso2 = () => {
+    console.log('első');
+    masodik();
+    console.log('harmadik');
+}
+
+elso();
 
 ////////////////////////////////////osztalyok//////////////////////////////////////////////////////
 
@@ -437,10 +493,8 @@ class SzemelyES6 {
 }
 
 const nandi = new SzemelyES6('Nandi', 1960, 'pek');
-SzemelyES6.udvozlet();
-
-///////////////////////////////////////////////////////////////
-//Alosztályok
+console.log(nandi);
+SzemelyES6.udvozlet();*/
 
 var SzemelyES5 = function(nev, szuletesiEv, foglalkozas){
     this.nev = nev;
@@ -459,12 +513,13 @@ var KatonaES5 = function(nev, szuletesiEv, foglalkozas, rendfokozat, osztag){
     this.osztag = osztag;
 }
 
+KatonaES5.prototype = Object.create(SzemelyES5.prototype)
 KatonaES5.prototype.rangszerzes = function(rang){
     this.rendfokozat = rang;
     console.log(this.rendfokozat);
 }
 
-var odonKatona = new KatonaES5('Odon', 1969, 'roman', 'kozlegeny', 'boxosok');
+var odonKatona = new KatonaES5('Odi', 1969, 'urologus', 'kozlegeny', 'boxosok');
 
 odonKatona.korszamitas();
 odonKatona.rangszerzes('szazados');
@@ -495,7 +550,7 @@ class KatonaES6 extends SzemelyES6{
     }
 }
 
-const nandiKatona = new KatonaES6('Nandi', 1960, 'tiszt', 'boxosok');
+const nandiKatona = new KatonaES6('Nandi', 1960, 'tiszt(a)', 'boxosok');
 
 nandiKatona.rangszerzes('szazados');
 nandiKatona.korSzamitas();
