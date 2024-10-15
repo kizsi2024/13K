@@ -359,7 +359,7 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         koltsegvetesVezerlo.tetelTorol(tip, ID);
 
         // 2. tétel törlése a felületről
-        feluletVezerlo.tetelTorles(tetelID);
+        koltsegvetesVezerlo.tetelTorol(tetelID);
         
         // 3. összegek újraszámolása és megjelenítése a felületen
         osszegFrissitese();
