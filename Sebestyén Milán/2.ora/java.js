@@ -424,7 +424,7 @@ new Szemely('Géza').barataimES6(haverok);
 */
 ////////////////////////////////////////////////////////////////////////////////////////////
 //
-
+/*
 //es5 
 var odon = ['Ödön', 50]
 var nev = odon[0];
@@ -460,26 +460,26 @@ const [kor3, nyugdij] = korEsNyugdij(1978);
 
 console.log(kor3);
 console.log(nyugdij);
-
+*/
 
 ///////////////////////////
 //Tömbök
-/*
+
 const dobozok = document.querySelectorAll('.rectangle');
-*/
+
 //es5
-/*
-var dobozokTombES5 = array.prototype.slice.call(dobozok)
+
+var dobozokTombES5 = Array.prototype.slice.call(dobozok)
     
     dobozokTombES5.forEach(function(aktualis) {
         aktualis.style.backgroundColor = 'orange' ;
     });
-    */
-/*
+    
+
 //es6
 
 const dobozokTombES6 = Array.from(dobozok);
-dobozokTombES6 forEach(aktualis => aktualis.style.backgroundColor = 'blue');
+dobozokTombES6.forEach(aktualis => aktualis.style.backgroundColor = 'blue');
 
 //es5
 
@@ -495,7 +495,7 @@ for (var i = 0; i < dobozokTombES5.length; i++) {
 
 for (const aktualis of dobozokTombES6) {
     if (aktualis.className === 'rectangle blue') {
-        contionue;
+        continue;
     }
     aktualis.textContent = 'Kék lettem';
 }
@@ -532,7 +532,7 @@ function szamok(a, b, c, d) {
     return a + b + c + d;
 }
 
-var osszeg = szamokl (1, 2, 3, 4);
+var osszeg = szamok(1, 2, 3, 4);
 console.log(osszeg);
 
 //es5
@@ -556,7 +556,7 @@ const htmlElemek = [cimsor, ...dobozok];
 
 Array.from(htmlElemek).forEach(aktualisElem => aktualisElem.style.color = 'purple');
 
-
+/*
 //////////////////////////////////////
 // Rest paratméterek
 
@@ -645,7 +645,7 @@ function AdamsFamily(keresztNev, szuletesiEv, csaladiNev = 'Adams') {
 var fester = new AdamsFamily('Fester', 1940);
 var morthisa = new AdamsFamily('Mortisha', 1965);
 var kuzin = new AdamsFamily('Kuzin', 1800, 'Hogyishivják');
-*/
+
 
 //es6
 /*
