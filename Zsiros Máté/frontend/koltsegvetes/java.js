@@ -135,8 +135,8 @@ var koltsegvetesVezerlo = (function() {
         getkoltsegvetes: function() {
             return {
                 osszeg: adat.koltsegvetes,
-                bev: adat.osszegek.bev,
-                kia: adat.osszegek.kia,
+                osszBevetel: adat.osszegek.bev,
+                osszKiadas: adat.osszegek.kia,
                 szazalek: adat.szazalek
             }
         },
@@ -166,6 +166,20 @@ var feluletVezerlo = (function() {
         tetelTorol: "tetel__torol--gomb"
     };
 
+    var szamFormazo = function(szam, tipus){
+        var elojel;
+
+        szam = Math.abs(szam);
+        szam = szam.toLocaleString()
+
+        tipus === "kia" ? elojel = '-' : elojel = '+'
+        szam = elojel + ' ' + szam
+        return szam
+    }
+
+
+
+
     return {
         getInput: function() {
             return {
@@ -194,18 +208,20 @@ var feluletVezerlo = (function() {
             // HTML string placeholder értékekkel cseréje
             ujHtml = html.replace('%id%', obj.id)
             ujHtml = ujHtml.replace('%leiras%', obj.leiras)
-            ujHtml = ujHtml.replace('%ertek%', obj.ertek)
+            ujHtml = ujHtml.replace('%ertek%', szamFormazo(obj.ertek, tipus))
 
             // HTML beszúrása a DOM-ba
-            document.querySelector(elem).insertAdjacentHTML('beforeend', ujHtml);
+            document.querySelector(elem).insertAdjacentHTML('beforeend', ujHtml)
 
             //Százalék frissítése
+            //DOMelemek.szazalekCimke.textContent = szazalekokFrissitese()
         },
 
         tetelTorles: function(tetelID) {
 
             var elem = document.getElementById(tetelID);
             elem.parentNode.removeChild(elem);
+            
         },
 
         urlapTorles: function() {
@@ -223,16 +239,16 @@ var feluletVezerlo = (function() {
 
             var tipus;
 
-            obj.koltsegvetes > 0 ? tipus == "bev" : "kia";
+            obj.koltsegvetes > 0 ? tipus = 'bev' : tipus = 'kia';
 
-            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = obj.osszeg;
-            document.querySelector(DOMelemek.osszbevetelCimke).textContent = obj.bev;
-            document.querySelector(DOMelemek.osszkiadasCimke).textContent = obj.kia;
+            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = szamFormazo(obj.koltsegvetes, tipus)
+            document.querySelector(DOMelemek.osszbevetelCimke).textContent = szamFormazo(obj.osszBevetel, tipus)
+            document.querySelector(DOMelemek.osszkiadasCimke).textContent = szamFormazo(obj.osszKiadas, tipus)
 
             if (obj.szazalek > 0) {
-                document.querySelector(DOMelemek.szazalekCimke).textContent = obj.szazalek + '%';
+                document.querySelector(DOMelemek.szazalekCimke).textContent = obj.szazalek + '%'
             } else {
-                document.querySelector(DOMelemek.szazalekCimke).textContent = '---';
+                document.querySelector(DOMelemek.szazalekCimke).textContent = '-'
             }
         },
 
@@ -243,7 +259,7 @@ var feluletVezerlo = (function() {
                 for(var i = 0; i < lista.length; i++){
                     callback(lista[i], i);
                 }
-            };
+            }
         
             nodeListForEach(elemek, function(aktualisElem, index){
                 if(szazalekok[index] > 0){
@@ -369,7 +385,7 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
                 szazalek: -1
                 
             });
-            esemenykezeloBeallit();
+            esemenykezeloBeallit()
             feluletVezerlo.datumMegjelenites()
         }
     };
