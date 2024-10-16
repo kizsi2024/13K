@@ -4,12 +4,11 @@ var koltsegvetesVezerlo = (function() {
         this.leiras = leiras;
         this.id = id;
         this.ertek = parseInt(ertek);
-        this.szazalek = -1;
     }
 
-Kiadas.prototype.szazalekSzamitas = function(osszBevetel){
-    if(osszBevetel > 0){
-        this.szazalek = Math.round(this.ertek / osszBevetel) * 100
+Kiadas.prototype.szazalekSzamitas = function(osszbevetel){
+    if(osszbevetel > 0){
+        this.szazalek = Math.round((this.ertek / osszbevetel) * 100)
     } else{
         this.szazalek = -1;
     }
@@ -119,16 +118,11 @@ Kiadas.prototype.getSzazalek = function(){
         },
 
         szazalekSzamolasa: function(){
-            /*
-                x = 20, y = 1, z = 40, bev = 200
-                x = (20/200) * 100 = 10%
-                y = (10/200) * 100 = 5%
-                z = (40/200) * 100 = 20%;
-            */
-
-            adat.tetelek.kia.forEach(function(aktualisElem){
-                aktualisElem.szazalekSzamitas(adat.osszegek.bev);
-            });
+            if(adat.osszegek.bev > 0){
+                adat.tetelek.kia.forEach(function(currentValue){
+                    currentValue.szazalekSzamitas(adat.osszegek.bev);
+                });
+            }
 
         },
 
@@ -316,7 +310,8 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         var kiadasSzazalekok = koltsegvetesVezerlo.szazalekoklekerdezese();
 
         // 3. Felület frissítése az új százalékkal
-        feluletVezerlo.szazalekMegjelenitese(kiadasSzazalekok);
+        console.log(kiadasSzazalekok)
+        //feluletVezerlo.szazalekMegjelenitese(kiadasSzazalekok);
     }
 
     var vezTetelHozzaadas = function() {
@@ -336,11 +331,11 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         feluletVezerlo.urlapTorles();
         // 5. Költségvetés újraszámolása és frissítése a felületen
         osszegFrissitese();
-        }
+        
 
          // 6. Százalékok újraszámolása és frissítése a felületen
          szazalekokFrissitese();
-
+        }
         
     };
 
