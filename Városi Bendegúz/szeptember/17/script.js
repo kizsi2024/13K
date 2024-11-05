@@ -737,7 +737,7 @@ console.log(nandi)*/
 
 //ES5
 
-var SzemelyES5 = function(nev, szuletesiEv, foglakozas){
+/*var SzemelyES5 = function(nev, szuletesiEv, foglakozas){
     this.nev = nev
     this.szuletesiEv = szuletesiEv
     this.foglakozas = foglakozas
@@ -794,4 +794,109 @@ class KatonaES6 extends SzemelyES5{
 const nandiKatona = new KatonaES6('Nándi', 1960, 'Tiszt', 'harcosok osztaga')
 
 nandiKatona.rangszerzes('szazados')
-nandiKatona.korszamitas()
+nandiKatona.korszamitas()*/
+
+
+/*const masodik = () =>{
+    console.log('masodik')
+}
+
+const elso = () => {
+    console.log('elso')
+    masodik()
+    console.log('harmadik')
+}
+
+elso()*/
+
+/*const masodik = () =>{
+    setTimeout(() =>{
+        console.log('Asszinkron masodik')
+    },6000)
+}
+
+const elso = () =>{
+    console.log('elso')
+    masodik()
+    console.log('harmadik')
+}
+
+elso()*/
+
+
+///////////////         Callback hell   ////////////////////////////////////////////////////////////////////////////////////////
+
+
+/*function receptLekerdez(){
+    setTimeout(() =>{
+        const receptID = [676, 102, 34, 1489, 321]
+        console.log(receptID)
+
+        setTimeout((id) =>{
+            const recept = {
+                cim: 'Gyulas',
+                ketegoria: 'Levesek'
+            }
+            console.log(`${id}, ${recept.cim}`)
+
+            setTimeout(kategoria => {
+                const levesek = [
+                    {cim: 'nyrsegi gombocleves', kategoria: 'Levesek'},
+                    {cim: 'borsoleves', ketegoria: 'Levesek'}
+                ]
+
+                console.log(levesek)
+            }, 2000, recept.kategoria)
+        }, 2000, receptID[1])
+    }, 3000)
+}
+
+receptLekerdez()*/
+
+
+///////////////////         promise     ///////////////////////////////////////////////
+
+const azonositokLekerdezese = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve([676, 102, 34, 1489, 321])
+    }, 2000)
+})
+
+const receptLekeres = (receptID) => {
+    return new Promise((resolve, rejcet) => {
+        setTimeout((id) =>{
+            const recept = {
+                cim: 'Gulyas',
+                kategoria: 'Levesek'
+            }
+            resolve(`${id}, ${recept.cim}`)
+        }, 2000, receptID)
+    })
+}
+
+const kategoriaLekeres = (kategoria) =>{
+    return new Promise((resolve, reject) => {
+        setTimeout((kat) =>{
+            const levesek = [
+                {cim: 'tokleves', kategoria: 'Levesek'},
+                {cim: 'husleves', kategoria: 'Levesek'}
+            ]
+            resolve(levesek)
+        }, 2000, kategoria)
+    })
+}
+
+azonositokLekerdezese.then(azonositok =>{
+    console.log(azonositok)
+    return receptLekeres(azonositok[2])
+})
+.then((recept) => {
+    console.log(recept)
+    return kategoriaLekeres(recept.kategoria)
+})
+.then((kategoria) => {
+    console.log(kategoria)
+})
+.catch(hiba =>{
+    console.log(hiba)
+})
