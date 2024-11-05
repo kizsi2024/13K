@@ -1,29 +1,29 @@
 // Költségvetés vezérlés
 var koltsegvetesVezerlo = (function() {
-
     var Kiadas = function(id, leiras, ertek) {
-        this.leiras = leiras;
-        this.id = id;
-        this.ertek = ertek;
-        this.szazalek=-1;
+        this.leiras = leiras
+        this.id = id
+        this.ertek = parseInt(ertek)
     }
 
-    Kiadas.prototype.szazalekokSzamolas=function(osszBevetel){
-        if(osszBevetel>0){
-            this.szazalek=Math.round((this.ertek/osszBevetel)*100)
-
+    Kiadas.prototype.szazalekSzamitas = function(osszBevetel){
+        if(osszBevetel > 0){
+            this.szazalek = Math.round((this.ertek / osszBevetel) * 100)
+        }else{
+            this.szazalek = -1
         }
-        else{
-            this.szazalek=-1
-        }
+        
     }
-    Kiadas.prototype.getSzazalek=function(){
+
+    Kiadas.prototype.getSzazalek = function(){
         return this.szazalek
     }
+
     var Bevetel = function(id, leiras, ertek) {
-        this.leiras = leiras;
-        this.id = id;
-        this.ertek = parseInt(ertek);
+        this.id = id
+        this.leiras = leiras
+        
+        this.ertek = parseInt(ertek)
     }
 
     var vegosszegSzamolas = function(tip) {
@@ -117,31 +117,36 @@ var koltsegvetesVezerlo = (function() {
             }
 
         },
-        szazalekokSzamolas:function(){
+
+        szazalekokSzamolasa: function(){
+            if (adat.osszegek.bev>0) {
+                adat.tetelek.kia.forEach(function(aktualisElem){
+                    aktualisElem.szazalekSzamitas(adat.osszegek.bev)
+                })
+            }
             
-            adat.tetelek.kia.forEach(function(aktualisElem){
-                aktualisElem.szazalekokSzamolas(adat.osszegek.bev)
-            })
         },
 
-        szazalekokLekeredezese:function(){
-            var kiadasSzazakek=adat.tetelek.kia.map(function(aktualisElem){
+        szazalekokLekerdezese: function(){
+            var kiadasSzazalokok = adat.tetelek.kia.map(function(aktualisElem)
+            {
                 return aktualisElem.getSzazalek()
             })
-            return kiadasSzazakek
-        },
 
+            return kiadasSzazalokok
+        },
+        
         getkoltsegvetes: function() {
             return {
                 osszeg: adat.koltsegvetes,
-                bev: adat.osszegek.bev,
-                kia: adat.osszegek.kia,
+                osszBevetel: adat.osszegek.bev,
+                osszKiadas: adat.osszegek.kia,
                 szazalek: adat.szazalek
             }
         },
 
         teszt: function() {
-            console.log(adat);
+            console.log(adat)
         }
     }
 })();
@@ -160,16 +165,24 @@ var feluletVezerlo = (function() {
         osszkiadasCimke: '.koltsegvetes__kiadasok--ertek',
         szazalekCimke: '.koltsegvetes__kiadasok--szazalek',
         kontener: '.kontener',
-        datumCimke:'.koltsegveetes_cim--honap'
+        datumCime: ".koltsegvetes__cim--honap",
+        szazalekokCimke: "tetel__szazalek",
+        tetelTorol: "tetel__torol--gomb"
     };
 
-    var szamFormazo=function(szam,tipus){
-        szam=Math.abs(szam)
-        szam=szam.toLocaleString()
-        tipus==='kia' ? elojel='-': elojel='+'
-        szam=elojel+' '+szam
+    var szamFormazo = function(szam, tipus){
+        var elojel;
+
+        szam = Math.abs(szam);
+        szam = szam.toLocaleString()
+
+        tipus === "kia" ? elojel = '-' : elojel = '+'
+        szam = elojel + ' ' + szam
         return szam
     }
+
+
+
 
     return {
         getInput: function() {
@@ -181,34 +194,38 @@ var feluletVezerlo = (function() {
         },
 
         getDOMelemek: function() {
-            return DOMelemek;
+            return DOMelemek
         },
 
         tetelMegjelenites: function(obj, tipus) {
-            var html, ujHtml, elem;
+            var html, ujHtml, elem
 
             // HTML string létrehozása placeholder értékekkel
             if (tipus === 'bev') {
-                elem = DOMelemek.bevetelTarolo;
+                elem = DOMelemek.bevetelTarolo
                 html = '<div class="tetel clearfix" id="bevetelek-%id%"><div class="tetel__leiras">%leiras%</div><div class="right clearfix"><div class="tetel__ertek">%ertek%</div><div class="tetel__torol"><button class="tetel__torol--gomb"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             } else if (tipus === 'kia') {
-                elem = DOMelemek.kiadasTarolo;
-                html = '<div class="tetel clearfix" id="expense-%id%"><div class="tetel__leiras">%leiras%</div><div class="right clearfix"><div class="tetel__ertek">%ertek%</div><div class="tetel__torol"><button class="tetel__torol--gomb"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                elem = DOMelemek.kiadasTarolo
+                html = '<div class="tetel clearfix" id="expense-%id%"><div class="tetel__leiras">%leiras%</div><div class="right clearfix"><div class="tetel__ertek">%ertek%</div><div class="tetel__szazalek">---</div><div class="tetel__torol"><button class="tetel__torol--gomb"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
 
             // HTML string placeholder értékekkel cseréje
-            ujHtml = html.replace('%id%', obj.id);
-            ujHtml = ujHtml.replace('%leiras%', obj.leiras);
-            ujHtml = ujHtml.replace('%ertek%',szamFormazo( obj.ertek,tipus));
+            ujHtml = html.replace('%id%', obj.id)
+            ujHtml = ujHtml.replace('%leiras%', obj.leiras)
+            ujHtml = ujHtml.replace('%ertek%', szamFormazo(obj.ertek, tipus))
 
             // HTML beszúrása a DOM-ba
-            document.querySelector(elem).insertAdjacentHTML('beforeend', ujHtml);
+            document.querySelector(elem).insertAdjacentHTML('beforeend', ujHtml)
+
+            //Százalék frissítése
+            //DOMelemek.szazalekCimke.textContent = szazalekokFrissitese()
         },
 
         tetelTorles: function(tetelID) {
 
             var elem = document.getElementById(tetelID);
             elem.parentNode.removeChild(elem);
+            
         },
 
         urlapTorles: function() {
@@ -223,28 +240,53 @@ var feluletVezerlo = (function() {
         },
 
         koltsegvetesMegjelenites: function(obj) {
-            var tipus;
-            obj.koltsegvetes>0 ? tipus='bev':'kia'
 
-            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = szamFormazo(obj.osszeg, tipus);
-            document.querySelector(DOMelemek.osszbevetelCimke).textContent = szamFormazo(obj.bev,'bev');
-            document.querySelector(DOMelemek.osszkiadasCimke).textContent = szamFormazo(obj.kia, 'kia');
+            var tipus;
+
+            obj.koltsegvetes > 0 ? tipus = 'bev' : tipus = 'kia';
+
+            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = szamFormazo(obj.koltsegvetes, tipus)
+            document.querySelector(DOMelemek.osszbevetelCimke).textContent = szamFormazo(obj.osszBevetel, tipus)
+            document.querySelector(DOMelemek.osszkiadasCimke).textContent = szamFormazo(obj.osszKiadas, tipus)
 
             if (obj.szazalek > 0) {
-                document.querySelector(DOMelemek.szazalekCimke).textContent = obj.szazalek + '%';
+                document.querySelector(DOMelemek.szazalekCimke).textContent = obj.szazalek + '%'
             } else {
-                document.querySelector(DOMelemek.szazalekCimke).textContent = '---';
+                document.querySelector(DOMelemek.szazalekCimke).textContent = '-'
             }
         },
-        datumMegjelenites:function(){
-            var most,ev,honap,honapok
-            honapok=['január','Február','Március','április','május','június','július','agusztus','szeptemer','oktober','november','december']
-            most=new Date()
-            ev=most.getFullYear()
-            honap=most.getMonth()
 
-            document.querySelector(DOMelemek.datumCimke).textContent-ev+'. '+honapok[honap]
-        }
+        szazalekokMegjelnitese: function(szazalekok){
+            var elemek = document.querySelectorAll(DOMelemek.szazalekokCimke);
+        
+            var nodeListForEach = function(lista, callback){
+                for(var i = 0; i < lista.length; i++){
+                    callback(lista[i], i);
+                }
+            }
+        
+            nodeListForEach(elemek, function(aktualisElem, index){
+                if(szazalekok[index] > 0){
+                    aktualisElem.textContent = szazalekok[index] + '%';
+                } else {
+                    aktualisElem.textContent = "---";
+                }
+            });
+        },
+
+        datumMegjelenites: function(){
+            var most, ev, honap, honapok;
+
+            honapok = ['Január','Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December']
+
+            most = new Date()
+            ev = most.getFullYear()
+            honap = most.getMonth()
+
+            document.querySelector(DOMelemek.datumCime).textContent = ev + '.' + honapok[honap]
+        },
+
+        
     };
 })();
 
@@ -277,16 +319,15 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         feluletVezerlo.koltsegvetesMegjelenites(koltsegvetes);
     }
 
-    var szazalekokFrissitese= function () {
-        // 1. Százalékok újraszámolása
-        koltsegvetesVezerlo.szazalekokSzamolas();
+    var szazalekokFrissitese = function() {
+        // 1. százalékok újraszámolása
+        koltsegvetesVezerlo.szazalekokSzamolasa()
 
-        // 2. Százalékok kiolvasása a költségvetés vezérlőből
-        var kiadasSzazakek=koltsegvetesVezerlo.szazalekokLekeredezese();
+        // 2. százalékok koilvasása a költségvetésvezérlőből
+        var kiadasSzazalekok = koltsegvetesVezerlo.szazalekokLekerdezese()
 
-        // 3. Felület frissítése az új százalékokkal
-        console.log(kiadasSzazakek);
-
+        // 3. felület frissitese
+        console.log(kiadasSzazalekok)
     }
 
     var vezTetelHozzaadas = function() {
@@ -306,6 +347,8 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         feluletVezerlo.urlapTorles();
         // 5. Költségvetés újraszámolása
         osszegFrissitese();
+        // 6. Százalékok ujraszámolása 
+        szazalekokFrissitese()
         }
 
         
@@ -330,6 +373,9 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         
         // 3. összegek újraszámolása és megjelenítése a felületen
         osszegFrissitese();
+
+        // 4. Százalékok ujraszámolása 
+        szazalekokFrissitese()
     };
 }
 
@@ -343,7 +389,8 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
                 szazalek: -1
                 
             });
-            esemenykezeloBeallit();
+            esemenykezeloBeallit()
+            feluletVezerlo.datumMegjelenites()
         }
     };
 })(koltsegvetesVezerlo, feluletVezerlo);
