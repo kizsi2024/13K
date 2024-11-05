@@ -125,10 +125,13 @@ Kiadas.prototype.getSzazalek = function(){
                 y = (10/200) * 100 = 5%
                 z = (40/200) * 100 = 20%;
             */
-
+           if(adat.osszegek.bev > 0)
+           {
             adat.tetelek.kia.forEach(function(aktualisElem){
                 aktualisElem.szazalekSzamitas(adat.osszegek.bev);
             });
+           }
+           
 
         },
 
