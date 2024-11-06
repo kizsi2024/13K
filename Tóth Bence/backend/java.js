@@ -495,7 +495,7 @@ class SzemelyES6 {
 const nandi = new SzemelyES6('Nandi', 1960, 'pek');
 console.log(nandi);
 SzemelyES6.udvozlet();*/
-
+/*
 var SzemelyES5 = function(nev, szuletesiEv, foglalkozas){
     this.nev = nev;
     this.szuletesiEv = szuletesiEv;
@@ -553,4 +553,101 @@ class KatonaES6 extends SzemelyES6{
 const nandiKatona = new KatonaES6('Nandi', 1960, 'tiszt(a)', 'boxosok');
 
 nandiKatona.rangszerzes('szazados');
-nandiKatona.korSzamitas();
+nandiKatona.korSzamitas();*/
+
+/*
+const masodik = () =>{
+    console.log("masodik")
+}
+
+const elso = () => {
+    console.log("elso")
+    masodik()
+    console.log("harmadik")
+}*/
+/*
+const masodik = () =>{
+    setTimeout(() => {
+        console.log('Asszinkron masodik')
+    }, 6000);
+};
+
+const elso = () => {
+    console.log('elso')
+    masodik();
+    console.log('harmadik')
+};
+
+elso();*/
+/*
+
+function receptLekerdez(){
+    setTimeout(() => {
+        const receptID = [676,102,34,1489,321]
+        console.log(receptID)
+
+        setTimeout((id) => {
+            const recept = {
+                cim: 'Gulyas',
+                kategoria: 'Levesek'
+            }
+            console.log(`${id}. ${recept.cim}`)
+
+            setTimeout(kategoria => {
+                const levesek = [
+                    {cim: 'nyirsegi gombocleves', kategoria: 'Levesek'},
+                    {cim: 'borsoleves', kategoria: 'Levesek'}
+
+                ]
+                console.log(levesek)
+            },2000,recept.kategoria)
+        },2000, receptID[1])
+    },3000)
+}*/
+
+///////////////////////////////////////////////
+//promise/////////////////////////////////////
+/////////////////////////////////////////////
+/*const azonositokLekerdezese = new Promise((resolve, reject) =>{
+    setTimeout(() => {
+        resolve([676,102,34,1489,321]);
+    },2000)
+})
+
+fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Budapest?unitGroup=metric&key=Q3NWVWPWALBRF8M676RBAYNWG&contentType=json')
+.then(result => {
+    return result.json()
+})
+.then(adat => {
+    console.log(adat)
+    const ma = adat.days[0]
+    const holnap = adat.days[1]
+    console.log(`Ma a hőmérséklet ${adat.address}en, ${Math.round(ma.tempmin)} és ${Math.round(ma.tempmax)} fok között fog változni.`)
+    console.log(`Holnap a hőmérséklet ${adat.address}en, ${Math.round(holnap.tempmin)} és ${Math.round(holnap.tempmax)} fok között fog változni.`)
+})
+.catch( error => {
+    console.error('Hiba történt az adatok lekérésekor: ', error)
+})*/
+
+
+document.body.style.backgroundColor = "blue"
+
+document.getElementById('ma')
+document.getElementById('holnap')
+
+
+
+async function getWeather(){
+    try{
+        const response = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Budapest?unitGroup=metric&key=Q3NWVWPWALBRF8M676RBAYNWG&contentType=json')
+        const adat = await response.json()
+        const ma = adat.days[0]
+        const holnap = adat.days[1]
+        p1.innerText =(`Ma a hőmérséklet ${adat.address}en, ${Math.round(ma.tempmin)} és ${Math.round(ma.tempmax)} fok között fog változni.`)
+        p2.innerText =(`Holnap a hőmérséklet ${adat.address}en, ${Math.round(holnap.tempmin)} és ${Math.round(holnap.tempmax)} fok között fog változni.`)
+    }
+    catch(error){
+        console.error('Hiba történt az adatok lekérésekor: ', error)
+    }
+}
+getWeather()

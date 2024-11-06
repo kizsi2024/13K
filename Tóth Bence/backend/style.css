@@ -1,0 +1,24 @@
+#p1{
+    text-align: center;
+
+    font-size: larger;
+}
+
+#p2{
+    text-align: center;
+
+    font-size: larger;
+}
+
+#grid{
+    margin: 200px;
+    border-radius: 100px;
+    background-color: red;
+    box-shadow: 3px 3px 3px 4px gray;
+    padding: 10px;
+    
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    
+}
