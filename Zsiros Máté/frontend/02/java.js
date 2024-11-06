@@ -381,7 +381,7 @@ var kuzin = new AdamsFamily('Kuzin', 1800, 'Hogyishivják');*/
 
 /////////////////////////////////
 // Map
-
+/*
 const kerdes = new Map();
 kerdes.set('kerdes', 'Hogy hivják a de miéééért reklámban szereplő kisfiút?');
 
@@ -499,3 +499,107 @@ const nandiKatona = new KatonaES6('Nandi', 1960, 'tiszt', 'boxosok');
 
 nandiKatona.rangszerzes('szazados');
 nandiKatona.korSzamitas();
+
+const masodik = () => {
+    console.log('masodik')
+}
+
+const elso = () => {
+    console.log('elso')
+    masodik()
+    console.log('harmadik')
+}
+
+elso()
+
+
+const masodik = () =>{
+    setTimeout(() => {
+        console.log('Asszinkron masodik')
+    }, 6000)
+}
+
+const elso = () => {
+    console.log('elso')
+    masodik()
+    console.log('harmadik')
+}
+
+elso()
+
+function receptLekerdez(){
+    setTimeout(() => {
+        const receptId = [676, 102, 34, 1489, 321]
+        console.log(receptId)
+
+        setTimeout((id) => {
+            const recept = {
+                cim: 'Gulyas',
+                kategoria: 'Levesek'
+            }
+            console.log(`${id}. ${recept.id}`)
+
+            setTimeout(kategoria => {
+                const levesek = [
+                    {cim: 'nyirsegi gombocleves', kategoria: 'Levesek'},
+                    {cim: 'borsoleves', kategoria: 'Levesek'}
+                ]
+
+                console.log(levesek)
+            }, 2000, recept.kategoria)
+        }, 2000, receptId[1])
+    }, 3000)
+}*/
+
+//////////////////////////////
+// Promise
+
+const azonositokLekerdezese = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve([676, 102, 34, 1089, 321])
+        //reject("valami hiba van");
+    }, 2000)
+})
+
+const receptLekeres = (receptID) => {
+    return new Promise((resolve, reject) => {
+        setTimeout((id) => {
+            const recept = {
+              cim: 'Gulyás Leves',
+              kategoria: 'Levesek' 
+            }
+
+            resolve(`${id}: ${recept.cim}`)
+        }, 1500, receptID)
+    })
+}
+
+const kategoriaLekeres = (kategoria) => {
+    return new Promise((resolve, reject) => {
+        setTimeout((kat) => {
+            const Levesek = [
+                { cim: 'Gulyás Leves', kategoria: 'Levesek' },
+                {  cim: 'Hús Leves',kategoria: 'Levesek' }
+            ];
+            resolve(Levesek)
+        }, 1500, kategoria)
+    })
+}
+
+//ez fut le ha sikeres a Promise
+azonositokLekerdezese.then(azonositok =>{
+    console.log(azonositok)
+    return receptLekeres(azonositok[2])
+})
+//összefésült visszahívások az előzövel
+.then((recept) => {
+    console.log(recept)
+    return kategoriaLekeres(recept.kategoria)
+})
+.then((kategoria) => {
+    console.log(kategoria)
+})
+//ez fut le ha bármikor a három Promise rejected lesz
+.catch(hiba=> {
+    console.log
+})
