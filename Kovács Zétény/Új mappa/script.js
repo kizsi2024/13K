@@ -347,7 +347,7 @@ const[kor3, nyugdij] = korEsNyugdij(1978)
 
 console.log(kor3)
 console.log(nyugdij)
-*/
+
 
 //Tömbök
 
@@ -384,3 +384,5 @@ for(const aktualis of dobozokTombES6){
     }
     aktualis.textContent = 'Kék lettem';
 }
+*/
+
