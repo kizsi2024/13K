@@ -532,7 +532,8 @@ function receptLekerdez(){
         const receptId = [676, 102, 34, 1489, 321]
         console.log(receptId)
 
-        setTimeout((id) => {
+        setTimeout((id)
+ => {
             const recept = {
                 cim: 'Gulyas',
                 kategoria: 'Levesek'
@@ -563,7 +564,8 @@ const azonositokLekerdezese = new Promise((resolve, reject) => {
 
 const receptLekeres = (receptID) => {
     return new Promise((resolve, reject) => {
-        setTimeout((id) => {
+        setTimeout((id)
+ => {
             const recept = {
               cim: 'Gulyás Leves',
               kategoria: 'Levesek' 
