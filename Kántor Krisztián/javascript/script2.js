@@ -249,7 +249,7 @@ console.log(nyugdij);
 
 ////////////////////////////////////////////////////////////////
 // Tömbök
- 
+ /*
 const dobozok = document.querySelectorAll('.rectangle');
  
 
@@ -300,7 +300,7 @@ console.log(felnottek.indexOf(true));
 console.log(korok.findIndex(aktualis => aktualis >= 18));
 console.log(korok.find(aktualis => aktualis >= 18));
  
- 
+ */
 ////////////////////////////////////////////////////////////////
 // Spread operator
 /*  
@@ -482,6 +482,7 @@ SzemelyES6.udvozlet();
 // Alosztályok (subclass)
 
 // ES5
+/*
 var SzemelyES5 = function(nev, szuletesiEv, foglalkozas) {
     this.nev = nev;
     this.szuletesiEv = szuletesiEv;
@@ -540,3 +541,89 @@ class KatonaES6 extends SzemelyES6 {
 const nadorKatona = new KatonaES6('Cukornádor', 1960, 'pókember', 'tiszt', 'harcosok');
 nadorKatona.rangSzerzes('százados');
 nadorKatona.korSzamitas();
+*//*
+const masodik=()=>{
+    setTimeout(()=>{
+        console.log("második")
+    },6000)
+}
+
+const elso=()=>{
+    console.log("elso")
+    masodik()
+    console.log("harmadik")
+}
+elso()
+*/
+
+////////////////////////////////callback hell//////////////////////////
+/*
+function receptLekerdezes(){
+    setTimeout(() => {
+        const receptID=[32,654,12,876,21]
+        console.log(receptID)
+
+        setTimeout((id) => {
+            const recept={
+                cim:"Gulyás",
+                kategoria:"Levesk"
+            }
+            console.log(`${id}. ${recept.cim}`)
+            setTimeout(kategoria => {
+                const levesek=[
+                    {cim:"sad",
+                    kategoria:"SAD"
+                    },
+                    {cim:"ew",
+                    kategoria:"eew"
+                    }
+                ]
+            }, 2000,recept.kategoria);
+        }, 2000,receptID[1])
+    }, 3000);
+    
+}
+receptLekerdezes()*/
+
+//////////////////////promise/////////////////
+
+const azolekerdezes=new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve([324,543,13,65,123])
+    }, 2000);
+})
+const receplekeres=(receptID)=>{
+    return new Promise((resolve,reject)=>
+    setTimeout((id) => {
+        const recept={
+            cim:"Gulyas",
+            kategoria:"levesek"
+        }
+        resolve(`${id}. ${recept.cim}`)
+    }, 2000,receptID))
+}
+
+const kategorialekres=(kategoria)=>{
+    return new Promise((resolve,reject)=>
+    setTimeout((kat) => {
+        const levesek={
+            cim:"tokleves",
+            kategoria:"levesek"
+        }
+        resolve(levesek)
+    }, 2000,kategoria))
+}
+
+azolekerdezes.then(azonositok=>{
+    console.log(azonositok)
+    return receplekeres(azonositok[1])
+})
+.then((recept)=>{
+    return kategorialekres(recept.kategoria)
+})
+.then((kategoria)=>{
+    console.log(kategoria)
+})
+.catch(hiba=>{
+    console.log(hiba)
+})
