@@ -1,0 +1,14 @@
+body{
+    background-color: rgb(115, 61, 181);
+}
+div{
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    background-color: coral;
+    border-radius: 10em;
+    padding: 2cm;
+}
+.ma{
+    padding: 1cm;
+}

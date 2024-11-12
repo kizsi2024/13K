@@ -1,0 +1,25 @@
+#ma{
+    text-align: center;
+
+    font-size: larger;
+}
+
+#holnap{
+    text-align: center;
+
+    font-size: larger;
+}
+
+#szekta{
+    margin: 10px;
+    border-radius: 10px;
+    background-color: lightcoral;
+    box-shadow: 3px 3px 3px gray;
+    padding: 10px;
+    
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
