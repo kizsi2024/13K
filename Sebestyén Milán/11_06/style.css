@@ -1,0 +1,18 @@
+body{
+    background-color: bisque;
+}
+h1{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: tan;
+    text-align: center;
+}
+div{
+    background-color: tan;
+    margin: auto;
+    width: 50%;
+    box-shadow: 2px 2px black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
