@@ -11,7 +11,7 @@ var koltsegvetesVezerlo = (function() {
 
         }
         else{
-            this.szazalek-1
+            this.szazalek=-1
         }
     }
     Kiadas.prototype.getSzazalek=function(){
@@ -115,9 +115,12 @@ var koltsegvetesVezerlo = (function() {
 
         },
         szazalekokSzamolas:function(){
-            adat.tetelek.kia.forEach(function(aktualisElem){
-                aktualisElem.szazalekokSzamolas(adat.osszegek.bev)
-            })
+            if(adat.osszegek.bev>0){
+                adat.tetelek.kia.forEach(function(aktualisElem){
+                    aktualisElem.szazalekokSzamolas(adat.osszegek.bev)
+                })
+            }
+            
         },
 
         szazalekokLekeredezese:function(){
@@ -156,7 +159,7 @@ var feluletVezerlo = (function() {
         osszkiadasCimke: '.koltsegvetes__kiadasok--ertek',
         szazalekCimke: '.koltsegvetes__kiadasok--szazalek',
         kontener: '.kontener',
-        datumCimke:'.koltsegveetes_cim--honap'
+        datumCimke:'.koltsegvetes__cim--honap'
     };
 
     var szamFormazo=function(szam,tipus){

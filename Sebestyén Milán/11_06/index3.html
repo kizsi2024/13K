@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise gyakorlás</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        async function getwheather() {
+            try {
+                fetch('https://api.openweathermap.org/data/2.5/weather?lat=47.4997&lon=19.0551&appid=4298702f2769c149cb50610175f40046').then(result => {
+                    return result.json();
+                }).then(adat => {
+                    console.log(adat)
+                    const ma = adat.main[0]
+                    const holnap = adat.main[1]
+                    const pma = document.createElement('p')
+                    pma.innerText = `ma a hömérséklet Budapesten ${Math.round(ma.temp_min)} és ${Math.round(ma.temp_max)}`
+                    const bodyma = document.getElementById('ma')
+                    bodyma.appendChild(pma)
+
+                    const pholnap = document.createElement('p')
+                    pholnap.innerText = `holnap a hömérséklet Budapesten ${Math.round(holnap.temp_min)} és ${Math.round(holnap.temp_max)}`
+                    const bodyholnap = document.getElementById('holnap')
+                    bodyholnap.appendChild(pholnap)
+                    console.log(`holnap a hömérséklet Budapesten ${Math.round(holnap.temp_min)} és ${Math.round(holnap.temp_max)}`)
+                })
+            } catch (error) {
+                console.error("hiba örtént az adatok lekérésekor", error);
+            }
+        }
+
+        getwheather()
+    </script>
+
+</head>
+
+<body>
+    <h1>Időjárás</h1>
+    <section>
+        <div id="ma">
+            <h2>Ma</h2>
+
+        </div>
+        <div id="holnap">
+            <h2>Holnap</h2>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
