@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise a gyakorlatban</title>
+    <script>
+        async function getWeather(){
+            try{
+                const response = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=47.4997&lon=19.0551&appid=d7588cb78a9e78e9d966042c564eee7d&units=metric")
+                const adat = await response.json();
+                console.log(adat)
+                const ma = adat.main;
+                const holnap = adat.main;
+                console.log(`Ma a hőmérséklet Budapesten ${Math.round(ma.temp_min)} és ${Math.round(ma.temp_max)} fok között fog változni.`);
+                console.log(`Holnap a hőmérséklet Budapesten ${Math.round(holnap.temp_min)} és ${Math.round(holnap.temp_max)} fok között fog változni.`);
+            } catch (error) {
+                console.log('Hiba történt az adatok lekérésekor:', error);
+            }
+        }
+
+        getWeather();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

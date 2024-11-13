@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise gyakorlás</title>
+    <script>
+        async function getwheather(){
+            try {
+                fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Budapest?unitGroup=metric&key=Q3NWVWPWALBRF8M676RBAYNWG&contentType=json').then(result => {
+                    return result.json();
+                }).then(adat => {
+                    console.log(adat)
+                    const ma = adat.days[0]
+                    const holnap = adat.days[1]
+                    console.log(`ma a hömérséklet ${adat.address}en ${Math.round(ma.tempmin)} és ${Math.round(ma.tempmax)}`)
+                    console.log(`holnap a hömérséklet ${adat.address}en ${Math.round(holnap.tempmin)} és ${Math.round(holnap.tempmax)}`)
+                })
+            } catch(error)  {
+                    console.error("hiba örtént az adatok lekérésekor", error);
+                }
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
