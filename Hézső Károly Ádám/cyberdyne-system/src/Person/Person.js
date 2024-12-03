@@ -1,14 +1,14 @@
-import React from "react";
+import React from "react"
+import './person.css'
 
-const szemely = (props)=>{
+const szemely = (props) => {
     return(
-        <div>
-        <p>nevem:{props.name}, korom:{props.age}</p>
-        <p>{props.children}</p>
+    <div className='Person'>
+        <p onClick={props.click}>Nevem: {props.name}, korom: {props.age}</p>
+        <input type="text" onChange={props.change} value={props.name}></input>
+        <input type="button" onClick={props.delete} value='Töröl'></input>
     </div>
     )
-    
-    
 }
 
-export default szemely;
+export default szemely
