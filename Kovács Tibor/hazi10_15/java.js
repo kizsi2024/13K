@@ -288,3 +288,4 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
 })(koltsegvetesVezerlo, feluletVezerlo);
 
 vezerlo.init();
+
