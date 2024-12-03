@@ -75,7 +75,7 @@ export default App;*/
 
 
 import React, {Component} from 'react'
-import './App.css';
+import './App.css'
 import Person from './Person/Person'
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 
@@ -110,11 +110,21 @@ class App extends Component{
     }
   
   render() {
+
+    const stilus = {
+      backgroundColor: 'efefef',
+      font: 'inherit',
+      border: '2px dashed red',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
+
     return(
       <div className='App'>
         <h1>Sziasztok</h1>
         <p>Ez egy paragraf</p>
-        <button onClick={this.nameChangeHandler.bind(this,'teszt')}>Nevet módosit</button>
+        <button style={stilus} onClick={this.nameChangeHandler.bind(this,'teszt')}>Nevet módosit</button>
         <Person
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age}
