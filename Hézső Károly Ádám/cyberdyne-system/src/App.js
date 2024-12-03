@@ -5,11 +5,10 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
 
 class App extends Component{
   
-    state = {
-      persons: [
-        {name: "Hübele Balázs", age: 26},
-        {name: "János", age: 58},
-        {name: "Kocka Karesz", age: 20}
+    state = {      persons: [        
+      {id: 'kutya',name: "Hübele Balázs", age: 26},
+      {id: 'fallosz',name: "János", age: 58},
+      {id: 'cikoria',name: "Kocka Karesz", age: 20}
       ],
       lathatosag:true
     }
@@ -24,14 +23,26 @@ class App extends Component{
       })
     }
 
-    nameValtozasHandler = (event) => {
-      this.setState({
-        persons: [
-          {name: event.target.value, age: 26},
-          {name: event.target.value, age: 34},
-          {name: event.target.value, age: 20}
-        ]
+    nameValtozasHandler = (event,id) => {
+      const szemelyIndex = this.state.persons.findIndex(aktSzemely =>{
+        return aktSzemely.id === id
       })
+    const szemely = {
+      ...this.state.persons[szemelyIndex]
+    }
+    szemely.name = event.target.value
+    const szemelyek = [...this.state.persons]
+    szemelyek[szemelyIndex] = szemely
+      this.setState({
+        persons: szemelyek
+      })
+      /*this.setState({
+        persons: [
+          {id: 'kutya',name: event.target.value, age: 26},
+          {id: 'fallosz',name: event.target.value, age: 34},
+          {id: 'cikoria',name: event.target.value, age: 20}
+        ]
+      })*/
     }
     kapcsoloHandler = () =>{
       const lathato = this.state.lathatosag
@@ -47,11 +58,12 @@ class App extends Component{
   render() {
 
     const stilus = {
-      backgroundColor: 'efefef',
+      backgroundColor: 'green',
       font: 'inherit',
-      border: '2px dashed red',
+      border: '2px solid green',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      color: 'white'
     }
 
 
@@ -68,11 +80,14 @@ class App extends Component{
                   name = {person.name}
                   age = {person.age}
                   delete = {() => this.personDeleteHandler(index)}
+                  key = {person.id}
+                  change = {(event) => this.nameValtozasHandler(event,person.id)}
                   />
                 })
               } 
             </div>
           )
+          stilus.backgroundColor = 'red'
         }
         
         
