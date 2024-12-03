@@ -26,7 +26,7 @@ export default App;
 */
 
 
-
+/*
 import React, {useState} from 'react'
 import './App.css';
 import Person from './Person/Person'
@@ -38,7 +38,7 @@ const App = props=> {
       {name: "János", age: 58},
       {name: "Kocka Karesz", age: 20}
     ],
-    //otherState: "Ez egy másik állpot"
+    masikState: 'másik state'
   })
   
   
@@ -69,14 +69,15 @@ const App = props=> {
 }
 
 
-export default App;
+export default App;*/
 
 
 
-/*
+
 import React, {Component} from 'react'
 import './App.css';
 import Person from './Person/Person'
+import { eventWrapper } from '@testing-library/user-event/dist/utils';
 
 class App extends Component{
   
@@ -88,12 +89,22 @@ class App extends Component{
       ]
     }
 
-    nameChangeHandler = () => {
+    nameChangeHandler = (ujNev) => {
       this.setState({
         persons: [
-          {name: "Hübele Balázs", age: 26},
+          {name: ujNev, age: 26},
           {name: "János", age: 34},
           {name: "Kocka Károly", age: 20}
+        ]
+      })
+    }
+
+    nameValtozasHandler = (event) => {
+      this.setState({
+        persons: [
+          {name: event.target.value, age: 26},
+          {name: event.target.value, age: 34},
+          {name: event.target.value, age: 20}
         ]
       })
     }
@@ -101,12 +112,28 @@ class App extends Component{
   render() {
     return(
       <div className='App'>
-        <h1>React feladatok</h1>
-        <p>Ez egy bekezdés</p>
-        <button onClick={this.nameChangeHandler}>Nevet módosit</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        <h1>Sziasztok</h1>
+        <p>Ez egy paragraf</p>
+        <button onClick={this.nameChangeHandler.bind(this,'teszt')}>Nevet módosit</button>
+        <Person
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          click={this.nameChangeHandler.bind(this,'Hübele Bazsi')}
+          change={this.nameValtozasHandler}
+          />
+        <Person 
+          name={this.state.persons[1].name} 
+          age={this.state.persons[1].age}
+          click={() => this.nameChangeHandler('Csak Balázs')}
+          change={this.nameValtozasHandler}
+          />
+          
+        <Person 
+          name={this.state.persons[2].name} 
+          age={this.state.persons[2].age}
+          change={this.nameValtozasHandler}
+          />
+          
       </div>
     )
   
@@ -114,4 +141,3 @@ class App extends Component{
 }
 
 export default App;
-*/
