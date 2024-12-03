@@ -5,6 +5,20 @@ var koltsegvetesVezerlo = (function() {
         this.id = id;
         this.ertek = parseInt(ertek);
     }
+
+Kiadas.prototype.szazalekSzamitas = function(osszbevetel){
+    if(osszbevetel > 0){
+        this.szazalek = Math.round((this.ertek / osszbevetel) * 100)
+    } else{
+        this.szazalek = -1;
+    }
+    
+};
+
+Kiadas.prototype.getSzazalek = function(){
+    return this.szazalek;
+};
+
     var Bevetel = function(id, leiras, ertek) {
         this.leiras = leiras;
         this.id = id;
@@ -103,6 +117,23 @@ var koltsegvetesVezerlo = (function() {
 
         },
 
+        szazalekSzamolasa: function(){
+            if(adat.osszegek.bev > 0){
+                adat.tetelek.kia.forEach(function(currentValue){
+                    currentValue.szazalekSzamitas(adat.osszegek.bev);
+                });
+            }
+
+        },
+
+        szazalekoklekerdezese: function(){
+            var kiadasSzazalekok = adat.tetelek.map(function(aktualisElem){
+                return aktualisElem.getSzazalek();
+            });
+
+            return kiadasSzazalekok;
+        },
+
         getkoltsegvetes: function() {
             return {
                 osszeg: adat.koltsegvetes,
@@ -131,7 +162,25 @@ var feluletVezerlo = (function() {
         osszbevetelCimke: '.koltsegvetes__bevetelek--ertek',
         osszkiadasCimke: '.koltsegvetes__kiadasok--ertek',
         szazalekCimke: '.koltsegvetes__kiadasok--szazalek',
-        kontener: '.kontener'
+        kontener: '.kontener',
+        szazalekokcimke: '.tetel__szazalek'
+    };
+
+    var szamFormazo = function(szam, tipus){
+        
+        var elojel;
+
+        /*
+            + vagy - jel a szám elé
+            ezres tagolás
+        */
+
+        szam = Math.abs(szam);
+        szam = szam.toLocaleString(); // 2 567 887
+        tipus === 'kia' ? elojel = '-' : elojel =  '+';
+        szam = elojel + ' ' + szam;
+        return szam;
+
     };
 
     return {
@@ -186,15 +235,39 @@ var feluletVezerlo = (function() {
         },
 
         koltsegvetesMegjelenites: function(obj) {
-            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = obj.osszeg;
-            document.querySelector(DOMelemek.osszbevetelCimke).textContent = obj.bev;
-            document.querySelector(DOMelemek.osszkiadasCimke).textContent = obj.kia;
+
+            var tipus;
+
+            obj.koltsegvetes > 0 ? tipus = 'bev' : 'kiv';
+
+            document.querySelector(DOMelemek.koltsegvetesCimke).textContent = szamFormazo(obj.osszeg, tipus);
+            document.querySelector(DOMelemek.osszbevetelCimke).textContent = szamFormazo(obj.bev, 'bev');
+            document.querySelector(DOMelemek.osszkiadasCimke).textContent = szamFormazo(obj.kia, 'kia');
 
             if (obj.szazalek > 0) {
                 document.querySelector(DOMelemek.szazalekCimke).textContent = obj.szazalek + '%';
             } else {
                 document.querySelector(DOMelemek.szazalekCimke).textContent = '---';
             }
+        },
+
+        szazalekMegjelenitese: function(szazalekok){
+            var elemek = document.querySelectorAll(DOMElemek.szazalekokcimke);
+
+            var nodeListForEach = function(lista, callback){
+                for(var i=0; i<lista.length; i++){
+                    callback(lista[i], i);
+                }
+            };
+
+            nodeListForEach(elemek, function(aktualisElem, index){
+                if(szazalekok[index] > 0){
+                    aktualisElem.textContent = szazalekok[index] + '%';
+                } else{
+                    aktualisElem.textContent = '---';
+                }
+                
+            });
         }
     };
 })();
@@ -228,6 +301,19 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         feluletVezerlo.koltsegvetesMegjelenites(koltsegvetes);
     }
 
+    var szazalekokFrissitese = function(){
+
+        // 1. Százalékok újraszámolása
+        koltsegvetesVezerlo.szazalekSzamolasa();
+
+        // 2. Százalékok kiolvasása a költségvetés vezérlőből
+        var kiadasSzazalekok = koltsegvetesVezerlo.szazalekoklekerdezese();
+
+        // 3. Felület frissítése az új százalékkal
+        console.log(kiadasSzazalekok)
+        //feluletVezerlo.szazalekMegjelenitese(kiadasSzazalekok);
+    }
+
     var vezTetelHozzaadas = function() {
         var input, ujTetel;
 
@@ -243,10 +329,13 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         feluletVezerlo.tetelMegjelenites(ujTetel, input.tipus);
         // 4. Mezők törlése
         feluletVezerlo.urlapTorles();
-        // 5. Költségvetés újraszámolása
+        // 5. Költségvetés újraszámolása és frissítése a felületen
         osszegFrissitese();
-        }
+        
 
+         // 6. Százalékok újraszámolása és frissítése a felületen
+         szazalekokFrissitese();
+        }
         
     };
 
@@ -265,10 +354,14 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
         koltsegvetesVezerlo.tetelTorol(tip, ID);
 
         // 2. tétel törlése a felületről
-        feluletVezerlo.tetelTorles(tetelID);
+        koltsegvetesVezerlo.tetelTorol(tetelID);
         
         // 3. összegek újraszámolása és megjelenítése a felületen
         osszegFrissitese();
+
+        //4. Százalék újraszámolása és frissítése
+        szazalekokFrissitese();
+        
     };
 }
 
@@ -288,3 +381,4 @@ var vezerlo = (function(koltsegvetesVez, feluletVez) {
 })(koltsegvetesVezerlo, feluletVezerlo);
 
 vezerlo.init();
+

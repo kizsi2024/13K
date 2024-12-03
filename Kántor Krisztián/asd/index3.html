@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        
+        async function getwheather(){
+            try {
+                fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Budapest?unitGroup=metric&key=Q3NWVWPWALBRF8M676RBAYNWG&contentType=json').then(result => {
+                    return result.json();
+                }).then(adat => {
+                    console.log(adat)
+                    const ma = adat.days[0]
+                    const holnap = adat.days[1]
+                    const ido=document.getElementById("idojaras")
+
+                    ido.style.display="grid"
+                    ido.style.gridTemplateColumns="1fr 1fr 1fr 1fr"
+                    
+                    const elso=document.createElement("div")
+                    const masodik=document.createElement("div")
+                    
+                    const egynap=document.createElement("h2")
+                    egynap.innerText="A mai hőmérséklet"
+                    const min=document.createElement("h3")
+                    const max=document.createElement("h3")
+                    min.innerText="Minimum: "+Math.round(ma.tempmin)
+                    max.innerText="Maximum: "+Math.round(ma.tempmax)
+                    elso.appendChild(egynap)
+                    elso.appendChild(min)
+                    elso.appendChild(max)
+                    elso.id="elso"
+                    elso.style.backgroundColor="deepskyblue"
+                    elso.style.margin="1em"
+                    elso.style.padding="0.7em"
+                    elso.style.borderRadius="10px"
+                    elso.style.boxShadow="2px 2px 6px gray"
+
+
+                    const ketnap=document.createElement("h2")
+                    ketnap.innerText="A holnapi hőmérséklet"
+                    const min1=document.createElement("h3")
+                    const max1=document.createElement("h3")
+                    min1.innerText="Minimum: "+Math.round(holnap.tempmin)
+                    max1.innerText="Maximum: "+Math.round(holnap.tempmax)
+                    masodik.appendChild(ketnap)
+                    masodik.appendChild(min1)
+                    masodik.appendChild(max1)
+                    masodik.style.backgroundColor="deepskyblue"
+                    masodik.style.margin="1em"
+                    masodik.style.padding="0.7em"
+                    masodik.style.borderRadius="10px"
+                    masodik.style.boxShadow="2px 2px 6px gray"
+
+                    console.log(`ma a hömérséklet ${adat.address}en ${Math.round(ma.tempmin)} és ${Math.round(ma.tempmax)}`)
+                    console.log(`holnap a hömérséklet ${adat.address}en ${Math.round(holnap.tempmin)} és ${Math.round(holnap.tempmax)}`)
+                    ido.appendChild(elso)
+                    ido.appendChild(masodik)
+
+                })
+            } catch(error)  {
+                    console.error("hiba örtént az adatok lekérésekor", error);
+                }
+        }
+
+        getwheather()
+    </script>
+</head>
+<body>
+    <h1>Időjárás</h1>
+    <main id="idojaras">
+
+    </main>
+
+    
+</body>
+</html>
