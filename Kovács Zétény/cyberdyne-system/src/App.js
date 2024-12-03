@@ -7,66 +7,98 @@ import Person from './Person/Person'
 class App extends Component{
   state={
     persons: [
-    {name: "Valaki", age:28},
-    {name: "Dr Lilla ", age:40},
-    {name: "Papa", age:55}
-  ]
+    {id: 'dsfss',name: "Valaki", age:28},
+    {id: 'fasf',name: "Dr Lilla ", age:40},
+    {id: 'aasdaaaas',name: "Papa", age:55}
+    ],
+    lathatosag: true
   }
   nameChangedHandler = (ujNev) => {
-  
-  this.setState({
-    persons: [
-      {name: ujNev, age:28},
-      {name: "Dr Lilla ", age:40},
-      {name: "Papa", age:55}
-    ]
-  })
+    this.setState(prevState => ({
+      persons: prevState.persons.map((person, index) => 
+        index === 0 ? {...person, name: ujNev} : person
+      )
+    }));
   }
-nevValtozasHandler =(event) =>{
-  this.setState({
-    persons: [
-      {name:event.target.value, age:28},
-      {name:event.target.value, age:40},
-      {name:event.target.value, age:55}
-    ]
-  })
+
+nevValtozasHandler = (event, id) => {
+  const szemelyIndex = this.state.persons.findIndex(aktSzemely => {
+    return aktSzemely.id === id;
+  });
+
+const szemely = {...this.state.persons[szemelyIndex]};
+  szemely.name = event.target.value;
+  const szemelyek = [...this.state.persons];
+  szemelyek[szemelyIndex] = szemely;
+
+  this.setState({persons: szemelyek});
 }
 
-  render(){
-    return (
-      <div className='App'>
-        <h1> React feladatok</h1>
-        <p> Ez egy parapgrafus </p>
-        <button onClick={this.nameChangedHandler.bind(this,'teszt')}>Nevet módosit</button>
-        <Person
-        name={this.state.persons[0].name}
-        age={this.state.persons[0].age}
-        click={this.nameChangedHandler.bind(this, 'Hübele Bazsi')}
-        change={this.nevValtozasHandler}
-        />
-        <Person
-        name={this.state.persons[1].name}
-        age={this.state.persons[1].age}
-        click={()=>this.nameChangedHandler('Csak Balázs')}
-        change={this.nevValtozasHandler}
-        />
-        <Person
-        name={this.state.persons[2].name}
-        age={this.state.persons[2].age}
-        change={this.nevValtozasHandler}
-        />
-  
-        VAlami Amit máté mondOT
-      </div>
+
+
+kapcsoloHandler = () =>{
+  const lathato = this.state.lathatosag;
+  this.setState({lathatosag: !lathato})
+}
+
+personDeleteHandler = (personIndex) => {
+ //const persons = this.state.persons;
+ //persons.splice(personIndex, 1);
+ const szemelyek =[...this.state.persons];
+ szemelyek.splice(personIndex,1);
+ this.setState({persons: szemelyek});
+}
+
+render(){
+  const stilus = {
+    backgroundColor: 'green',
+    font: 'inherit',
+    border: '2px solid green',
+    padding: '8px',
+    cursor: 'pointer',
+    color: 'white'
+  };
+
+  let persons = null
+  if(this.state.lathatosag){
+    persons = (
+        <div>
+
+      {
+        this.state.persons.map((person, index) => {
+          return <Person
+          key={index}
+          name={person.name}
+          age={person.age}
+          delete={() => this.personDeleteHandler(index)}
+          change = {(event) => this.nevValtozasHandler(event, person.id)}
+          />
+         
+        })
+        
+      }
+
+        </div>
+      )
+      stilus.backgroundColor = 'red';
+    } 
+    return(  
+    <div className='App'>
+    <h1> React feladatok</h1>
+    <p> Ez egy parapgrafus </p>
+    <button style={stilus} onClick={this.kapcsoloHandler}>Láthatóság</button>
+    {persons}
+    </div>
     )
   
-}
+  }
+
 }
 
 export default App;
 
 
-  
+/*  
 //console.log(this.state)
 
 
