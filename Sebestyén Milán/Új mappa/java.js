@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ////////////////////////////////////////////////////////////////
 // let, const
 
@@ -510,9 +510,7 @@ const nadorKatona = new KatonaES6('Cukornádor', 1960, 'pókember', 'tiszt', 'ha
 nadorKatona.rangSzerzes('százados');
 nadorKatona.korSzamitas();*/
 
-*/
 
-=======
 ////////////////////////////////////////////////////////////////
 // let, const
 
@@ -1024,6 +1022,6 @@ const nadorKatona = new KatonaES6('Cukornádor', 1960, 'pókember', 'tiszt', 'ha
 nadorKatona.rangSzerzes('százados');
 nadorKatona.korSzamitas();*/
 
-*/
 
->>>>>>> 65ee104ccf52363749b26d018c2d47e500161ec6
+
+
