@@ -1,0 +1,8 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Hurricane', sans-serif;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(123,0,0,1) 11%, rgba(131,143,0,1) 22%, rgba(0,152,26,1) 33%, rgba(0,161,146,1) 44%, rgba(0,17,178,1) 55%, rgba(134,8,219,1) 66%, rgba(254,0,255,1) 77%, rgba(219,8,8,1) 88%, rgba(0,0,0,1) 99%);
+  color: #fff;
+}
