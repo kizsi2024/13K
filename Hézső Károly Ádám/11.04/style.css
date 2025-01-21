@@ -8,7 +8,6 @@ div{
     background-color: coral;
     border-radius: 10em;
     padding: 2cm;
-}
-.ma{
-    padding: 1cm;
+    margin: 4ch;
+    width: fit-content;
 }

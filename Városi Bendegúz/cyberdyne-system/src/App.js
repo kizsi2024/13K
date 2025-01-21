@@ -74,8 +74,18 @@ export default App;*/
 
 
 
+
+
+
+
+////////////////////////////////      SPREAD OPERATOR      //////////////////////////////////////////
+
+
+
+
+
 import React, {Component} from 'react'
-import './App.css';
+import './App.css'
 import Person from './Person/Person'
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 
@@ -83,10 +93,12 @@ class App extends Component{
   
     state = {
       persons: [
-        {name: "Hübele Balázs", age: 26},
-        {name: "János", age: 58},
-        {name: "Kocka Karesz", age: 20}
-      ]
+        {id:'dsfsf', name: "Hübele Balázs", age: 26},
+        {id:'uizui', name: "János", age: 58},
+        {id:'hmnm', name: "Kocka Karesz", age: 20}
+      ],
+      masikState: 'másik state',
+      lathatosag: true
     }
 
     nameChangeHandler = (ujNev) => {
@@ -99,41 +111,82 @@ class App extends Component{
       })
     }
 
-    nameValtozasHandler = (event) => {
-      this.setState({
-        persons: [
-          {name: event.target.value, age: 26},
-          {name: event.target.value, age: 34},
-          {name: event.target.value, age: 20}
-        ]
+    nameValtozasHandler = (event, id) => {
+      const szemelyIndex = this.state.persons.findIndex(aktSzemely => {
+        return aktSzemely.id === id
       })
+
+      const szemely = {
+        ...this.state.persons[szemelyIndex]
+      }
+
+      szemely.name = event.target.value
+      const szemelyek = [...this.state.persons]
+      szemelyek[szemelyIndex] = szemely
+
+        this.setState({
+          persons: szemelyek
+        })
+
+    }
+
+    kapcsoloHandler = () => {
+      const lathato = this.state.lathatosag
+      this.setState({lathatosag: !lathato})
+    }
+
+    personDeleteHandler = (personIndex) => {
+      //const persons = this.state.persons
+      //persons.splice(personIndex, 1)
+      //this.setState({persons: persons})
+      const szemelyek = [...this.state.persons]
+      szemelyek.splice(personIndex, 1)
+      this.setState({persons: szemelyek})
     }
   
   render() {
+
+    const stilus = {
+      backgroundColor: 'green',
+      font: 'inherit',
+      border: '2px solid green',
+      padding: '8px',
+      cursor: 'pointer',
+      color: 'white'
+    }
+
+    let persons = null
+    if(this.state.lathatosag){
+      persons = (
+        
+        <div>
+        
+        {
+          this.state.persons.map((person, index) => {
+            return <Person
+
+              name={person.name}
+              age={person.age}
+              delete={() => this.personDeleteHandler(index)}
+              key={person.id}
+              change={(event) => this.nameValtozasHandler(event, person.id)}
+            />
+          })
+        }
+
+
+        </div>
+      )
+      stilus.backgroundColor = 'red'
+    }
+
+
     return(
       <div className='App'>
         <h1>Sziasztok</h1>
         <p>Ez egy paragraf</p>
-        <button onClick={this.nameChangeHandler.bind(this,'teszt')}>Nevet módosit</button>
-        <Person
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          click={this.nameChangeHandler.bind(this,'Hübele Bazsi')}
-          change={this.nameValtozasHandler}
-          />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={() => this.nameChangeHandler('Csak Balázs')}
-          change={this.nameValtozasHandler}
-          />
-          
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}
-          change={this.nameValtozasHandler}
-          />
-          
+        <button style={stilus} onClick={this.kapcsoloHandler}>Nevet módosit</button>
+        {persons}
       </div>
     )
   
