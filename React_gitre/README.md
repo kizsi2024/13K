@@ -2,7 +2,7 @@
 
 # ITMP Klub képzés infotanároknak - Bevezetés a React.js-be
 
-**2024. december 7., szombat**
+**2024. december 7., szombat
 
 Az ősz beköszöntével egy újabb izgalmas képzéssel jelentkezünk. Az ITMP Klub keretében egy egynapos, React alapozó képzést szervezünk, amelyen természetesen ingyenesen vehetnek részt klubtagjaink.
 
