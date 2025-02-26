@@ -1,7 +1,10 @@
 import OraCard from "./components/OraCard";
 import Oraszam from "./components/Oraszam";
+import Temakorok from "./components/Temakorok";
+import { useState } from "react";
 
 const orak=[
+  
   {
     "oraSzam": 1,
     "cim": "Bevezetés a webfejlesztésbe",
@@ -301,11 +304,12 @@ const orak=[
 
 
 const App = /*Nyíl fügyvény=>*/() => {
+  const [stateNeve, setStateNeve] = useState("kezdőérték");
   return (
     <main>
     <h1>Bevezetés a programozásba</h1>
     <Oraszam orakATanmenetben={orak.length} />
-    
+    <Temakorok></Temakorok>
     <section className="ora-grid">
   {orak.map((ora) => (
     <OraCard key={ora.oraSzam} oraSzam={`${ora.oraSzam}. óra`} cim={ora.cim}>
@@ -318,5 +322,5 @@ const App = /*Nyíl fügyvény=>*/() => {
 )
 }
 
-export default App;
 
+export default App;
