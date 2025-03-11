@@ -1,6 +1,7 @@
 import OraCard from "./components/OraCard";
 import Oraszam from "./components/Oraszam";
 import Temakorok from "./components/Temakorok";
+import OraForm from "./components/OraForm";
 import { useState } from "react";
 
 const orak=[
@@ -308,6 +309,7 @@ const App = /*Nyíl fügyvény=>*/() => {
   return (
     <main>
     <h1>Bevezetés a programozásba</h1>
+    <OraForm onOraHozzaad={(newOra) => setOrak((prev) => [...prev, newOra])} />
     <Oraszam orakATanmenetben={orak.length} />
     <Temakorok></Temakorok>
     <section className="ora-grid">

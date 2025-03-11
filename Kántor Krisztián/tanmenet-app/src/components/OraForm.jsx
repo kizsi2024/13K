@@ -4,6 +4,9 @@ const OraForm = () => {
   const [cim, setCim] = useState("");
   const [leiras, setLeiras] = useState("");
 
+  function handleFormSubmit() {
+    
+  }
   return (
     <form action="#">
       <div className="col">
