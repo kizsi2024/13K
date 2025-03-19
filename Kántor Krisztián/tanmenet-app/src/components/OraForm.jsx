@@ -1,14 +1,21 @@
 import { useState } from "react";
 
-const OraForm = () => {
+const OraForm = ({onOraHozzaad}) => {
   const [cim, setCim] = useState("");
   const [leiras, setLeiras] = useState("");
 
-  function handleFormSubmit() {
-    
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const newOra = {
+      cim,
+      leiras,
+    };
+     onOraHozzaad(newOra);
+    setCim("");
+    setLeiras("");
   }
   return (
-    <form action="#">
+    <form onSubmit={handleFormSubmit}>
       <div className="col">
         <input
           type="text"
@@ -25,7 +32,7 @@ const OraForm = () => {
       </div>
       <aside className="col">
         <button className="btn">Hozzáadás</button>
-        <button className="btn outline">Mégsem</button>
+        {/*<button className="btn outline">Mégsem</button>*/}
       </aside>
     </form>
   );
