@@ -10,8 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+=======
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sequelize": "^6.37.6"
+>>>>>>> cfabe0f7161a34446e9983d5835f668304b44da3
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

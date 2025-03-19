@@ -5,6 +5,7 @@ const OraForm = ({onOraHozzaad}) => {
   const [leiras, setLeiras] = useState("");
 
   function handleFormSubmit(e) {
+<<<<<<< HEAD
     e.preventDefault()
 
     const newOra = {
@@ -16,6 +17,16 @@ const OraForm = ({onOraHozzaad}) => {
 
     setCim("")
     setLeiras("")
+=======
+    e.preventDefault();
+    const newOra = {
+      cim,
+      leiras,
+    };
+     onOraHozzaad(newOra);
+    setCim("");
+    setLeiras("");
+>>>>>>> cfabe0f7161a34446e9983d5835f668304b44da3
   }
   return (
     <form onSubmit={handleFormSubmit}>
@@ -35,7 +46,11 @@ const OraForm = ({onOraHozzaad}) => {
       </div>
       <aside className="col">
         <button className="btn">Hozzáadás</button>
+<<<<<<< HEAD
         <button className="btn outline">Mégsem</button>
+=======
+        {/*<button className="btn outline">Mégsem</button>*/}
+>>>>>>> cfabe0f7161a34446e9983d5835f668304b44da3
       </aside>
     </form>
   );
