@@ -1,0 +1,141 @@
+.school-meta-comp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  width: 90%; /* Adjust width to be responsive */
+  max-width: 800px; /* Limit maximum width */
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  padding: 20px; /* Adjust padding as needed */
+  display: flex;
+  flex-direction: column; /* Ensure contents stack vertically */
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #75b8b8;
+  background-color: #1a2226;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.title {
+  font-size: 24px;
+  color: #3498db !important;
+  margin: 0;
+}
+
+.back-button {
+  font-size: 16px;
+  color: #3498db !important;
+  font-weight: 400 !important;
+  text-decoration: none;
+  padding: 10px 15px;
+  background-color: #394240;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  margin: auto;
+}
+
+.modal-buttons button {
+  font-size: 16px;
+  font-weight: 400 !important;
+  padding: 10px 15px;
+  border: 1px solid #3498db;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+/* Adjust modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #1a2226;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .box {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .box {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .box {
+    width: 100%;
+    padding: 10px; /* Adjust padding for smaller screens */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+
+  .header {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+
+  .title {
+    font-size: 18px; /* Adjust font size for smaller screens */
+    margin: 0;
+  }
+
+  .back-button {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px 10px; /* Adjust padding for smaller screens */
+  }
+
+  .modal {
+    padding: 10px; /* Adjust padding for smaller screens */
+    max-width: 100%; /* Full width for smaller screens */
+  }
+
+  .modal-buttons button {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px 10px; /* Adjust padding for smaller screens */
+    margin-left: 10px; /* Adjust margin for smaller screens */
+    margin-right: 10px; /* Adjust margin for smaller screens */
+  }
+}
+
+

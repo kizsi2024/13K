@@ -1,0 +1,18 @@
+/* studentFullScheduele.css */
+
+/* Adjust table layout for smaller screens */
+@media (max-width: 768px) {
+  
+  .table-responsive {
+      max-height: 400px;
+      max-width: 400px; 
+      
+  }
+
+  .content-box {
+    max-width: 400px;
+    
+
+  } 
+
+}
