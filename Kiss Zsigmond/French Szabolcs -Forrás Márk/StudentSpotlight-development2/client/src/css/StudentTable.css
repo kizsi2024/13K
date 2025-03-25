@@ -1,0 +1,62 @@
+.action-buttons {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-evenly !important;
+  max-width: 100%;
+  padding-top: 5px;
+}
+
+.action-buttons button {
+  min-width: 25% !important;
+  font-size: 10px !important;
+  padding: 6px 10px !important;
+
+}
+
+.student-table-container {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 0px;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th,
+.student-table td {
+  padding: 6px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.checkbox-column {
+  width: 30px;
+}
+
+.checkbox-input {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .action-buttons button {
+    min-width: 100px !important;
+    font-size: 8px !important;
+    padding: 4px 10px !important;
+  }
+
+  .student-table-container {
+    max-height: 200px !important;
+  }
+
+  .student-table th,
+  .student-table td {
+    padding: 4px;
+  }
+
+  .checkbox-column {
+    width: 20px !important;
+  }
+}
