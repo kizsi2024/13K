@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="../css/registrationPage_CSS/registrationPage_global.css" />
+  <link rel="stylesheet" href="../css/registrationPage_CSS/registrationPage.css" />
+  <link rel="stylesheet" href="../css/registrationPage_CSS/responsive.css" />
+  <link rel="icon" href="../images/logo-removebg-preview.png" type="image/png">
+  <script src="../js/script.js"></script>
+  <title>Regisztráció</title>
+</head>
+
+<body>
+  <div class="frame-1">
+    <div class="frame-2">
+      <a class="frame-3">
+        <img class="logo" src="../images/logo-removebg-preview.png">
+        <img class="food-hub-stroke" src="../images/registrationPage/foodhub-text.svg" alt="" srcset="">
+      </a>
+      <div class="regisztralj">Regisztrálj!</div>
+    </div>
+    <form id="regisztracio">
+      <div class="border">
+        <div class="felhasznalonev-frame">
+          <div class="felhasznalonev">Felhasználónév:</div>
+          <div class="frame_input">
+            <input class="input" type="text" placeholder="Pl.: FoodHub" id="username" required />
+          </div>
+        </div>
+        <div class="email-frame">
+          <div class="e-mail-cim">E-mail cím:</div>
+          <div class="frame_input">
+            <input class="input" type="email" placeholder="Pl.: foodhub@gmail.com" id="email" required />
+          </div>
+        </div>
+        <div class="password-frame">
+          <div class="jelszo">Jelszó:</div>
+          <div class="frame_input">
+            <input class="input" type="password" placeholder="Pl.: Foodhub12345" id="password" required />
+            <div class="gomb-frame">
+              <button type="button" onclick="togglePassword()" class="gomb-style">Mutasd</button>
+            </div>
+          </div>
+        </div>
+        <div class="password-requirements" id="show-pass-req">
+          A jelszónak tartalmaznia kell:
+          <ul>
+            <li class="chrLength" id="chrLength">Legalább 5 karaktert</li>
+            <li class="prCase" id="prCase">Legalább egy nagybetűt</li>
+            <li class="lwrCase" id="lwrCase">Legalább egy kisbetűt</li>
+            <li class="numLength" id="numLength">Legalább egy számjegyet</li>
+          </ul>
+        </div>
+        <div class="password-check-frame">
+          <div class="jelszo">Jelszó újra:</div>
+          <div class="frame_input">
+            <input class="input" type="password" id="passwordAgain" placeholder="Pl.: Foodhub12345" required />
+            <div class="gomb-frame">
+              <button type="button" onclick="togglePasswordAgain()" class="gomb-style">Mutasd</button>
+            </div>
+          </div>
+        </div>
+        <div class="password-match" id="show-pass-not-matching">
+          <ul>
+            <li class="notMatching" id="notMatching">A két jelszó nem egyezik meg!</li>
+          </ul>
+        </div>
+        <div class="regTologText">
+          <span>
+            <span class="regTologText-span">Már van fiókod?</span>
+            <span class="regTologText-span-a"><a href="../html/loginPage.html">Jelentkezz be.</a></span>
+          </span>
+        </div>
+        <button type="button" class="regButton-frame" onclick="RegButton()">
+          <span class="regisztralas">Regisztrálás</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <script src="../js/registrationPage.js"></script>
+  <script src="../js/passwordCheck.js"></script>
+</body>
+
+</html>

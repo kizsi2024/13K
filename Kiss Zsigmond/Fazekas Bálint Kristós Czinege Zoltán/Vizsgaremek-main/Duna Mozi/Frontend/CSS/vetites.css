@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.vetites {
+    height: 200px;
+    width: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: 100% auto;
+    background-position: 100% 20%;
+    display: flex;
+    transition: box-shadow 0.3s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.vetites:hover {
+    box-shadow: 0 2px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.szoveg{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0;
+}
+
+.szoveg{
+    background-color: rgba(255, 255, 255, 0.7); 
+    height: 170px;
+    width: 500px;
+    padding: 20px;
+    border-radius: 30px; 
+}
+
+.szoveg p{
+    color: #333; 
+    font-size: 20px; 
+    font-weight: bold; 
+    margin: 10px 0; 
+}
+
+
+.felsorol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,1 @@
+generateColor("#user-profile", "#header-linear", "background");
