@@ -26,7 +26,7 @@ export default App;
 */
 
 
-
+/*
 import React, {useState} from 'react'
 import './App.css';
 import Person from './Person/Person'
@@ -70,10 +70,10 @@ const App = props=> {
 
 
 export default App;
+*/
 
 
 
-/*
 import React, {Component} from 'react'
 import './App.css';
 import Person from './Person/Person'
@@ -82,31 +82,77 @@ class App extends Component{
   
     state = {
       persons: [
-        {name: "Hübele Balázs", age: 26},
-        {name: "János", age: 58},
-        {name: "Kocka Karesz", age: 20}
+        {id:'asd' ,name: "Hübele Balázs", age: 26},
+        {id:'dsa' ,name: "János", age: 58},
+        {id:'qwe' ,name: "Kocka Karesz", age: 20}
       ]
     }
 
-    nameChangeHandler = () => {
+    nameChangeHandler = (event,id) => {
+      const szemelyIndex=this.state.persons.findIndex(aktSzemely=>{
+        return aktSzemely.id===id;
+      })
+      const szemely ={
+        ...this.state.persons[szemelyIndex]
+      }
+      szemely.name=event.target.value
+      const szemelyek=[...this.state.persons]
+      szemelyek[szemelyIndex]=szemely;
       this.setState({
-        persons: [
-          {name: "Hübele Balázs", age: 26},
-          {name: "János", age: 34},
-          {name: "Kocka Károly", age: 20}
-        ]
+        persons:szemelyek
       })
     }
-  
-  render() {
-    return(
+    
+
+    
+kapcsoloHandler=()=>{
+  const lathato =this.state.lathatosag
+  this.setState({lathatosag: !lathato})
+}
+personDeleteHandler=(personIndex)=>{
+  //const persons=this.state.persons
+  //persons.splice(personIndex,1)
+  const persons=[...this.state.persons]
+  persons.splice(personIndex,1)
+  this.setState({persons:persons})
+}
+
+render() {
+  const stilus={
+    backgroundColor:'green',
+    font:"inherit",
+    border:"2px solid green",
+    padding: "8px",
+    cursor:"pointer",
+    color: "white"
+  };
+  let persons=null
+  if (this.state.lathatosag) {
+    persons=(
+      <div>
+        {
+          this.state.persons.map((person,index)=>{
+            return <Person
+            name={person.name}
+            age={person.age}
+            delete={()=>this.personDeleteHandler(index)}
+            key={person.id}
+            change={(event)=>this.nameChangeHandler(event,person.id)}
+            />
+          })
+          
+        }
+      </div>
+      
+    );
+    stilus.backgroundColor="red"
+  }
+  return(
       <div className='App'>
         <h1>React feladatok</h1>
         <p>Ez egy bekezdés</p>
-        <button onClick={this.nameChangeHandler}>Nevet módosit</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+        <button style={stilus} onClick={this.kapcsoloHandler}>Nevet módosit</button>
+        {persons}
       </div>
     )
   
@@ -114,4 +160,3 @@ class App extends Component{
 }
 
 export default App;
-*/

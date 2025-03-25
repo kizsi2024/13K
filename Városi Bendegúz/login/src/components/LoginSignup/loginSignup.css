@@ -1,0 +1,157 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+.form-container{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.form-header{
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-header h1{
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.subtitile{
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.input-field{
+    position: relative;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.input-icon{
+    padding: 0.1rem;
+    color: #666;
+    min-width: 20px;
+}
+
+.input-field input{
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    outline: none;
+}
+
+.password-toggle{
+    padding-right: 1rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.extras{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.remember-me{
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input{
+    margin-right: 0.5rem;
+}
+
+.forgot-password{
+    color: #3498db;
+    text-decoration: none;
+}
+
+.submit-btn{
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover{
+    background-color: #2980b9;
+}
+
+.form-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.form-switch p{
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.form.submit span{
+    color: #3498db;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.terms {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.terms a{
+    color: #3498db;
+    text-decoration: none;
+}
+
+.error-message{
+    background-color: #ffe6e6;
+    color: #d63031;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-left: 4px solid #d63031;
+}
+
+.success-message{
+    background-color: #e6ffed;
+    color: #00b894;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-left: 4px solid #00b894;
+}
+
+.submit-btn:disabled{
+    background-color: #7f8c8d;
+    cursor: not-allowed;
+}
